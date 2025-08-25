@@ -8,6 +8,10 @@ import AboutUs from "./pages/AboutUs";
 import BecomeMember from "./pages/BecomeMember";
 import BecomeSponsor from "./pages/BecomeSponsor";
 import Events from "./pages/Events";
+import CurrentEvent from "./pages/CurrentEvent";
+import UpcomingEvents from "./pages/UpcomingEvents";
+import PastEvents from "./pages/PastEvents";
+import EventGallery from "./pages/EventGallery";
 import NotFound from "./pages/NotFound";
 import FeedbackButton from "./components/FeedbackButton";
 import FaviconUpdater from "./components/FaviconUpdater";
@@ -27,6 +31,10 @@ const App = () => (
           <Route path="/get-involved/membership" element={<BecomeMember />} />
           <Route path="/get-involved/sponsor" element={<BecomeSponsor />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/events/current" element={<CurrentEvent />} />
+          <Route path="/events/upcoming" element={<UpcomingEvents />} />
+          <Route path="/events/past" element={<PastEvents />} />
+          <Route path="/events/gallery" element={<EventGallery />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
