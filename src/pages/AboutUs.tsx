@@ -120,6 +120,41 @@ const AboutUs = () => {
             </div>
           </div>
         </section>
+
+        {/* ByLaw Section */}
+        <section className="mt-20">
+          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 md:p-12 text-center border border-primary/20">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6">DOS ByLaw</h2>
+            <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8">
+              Our organization operates under a comprehensive set of bylaws that guide our governance, 
+              membership, and community activities. These bylaws ensure transparency, accountability, 
+              and proper organizational structure.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <div className="text-center">
+                <p className="text-sm text-muted-foreground mb-2">Document Version</p>
+                <p className="text-lg font-semibold text-primary">09-October-2024</p>
+              </div>
+              <div className="text-center">
+                <p className="text-sm text-muted-foreground mb-2">Last Updated</p>
+                <p className="text-lg font-semibold text-primary">October 2024</p>
+              </div>
+            </div>
+            <div className="mt-8">
+              <a 
+                href="https://sites.google.com/view/dallasodiasociety/about-us/bylaw-pdf-version?authuser=0" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors duration-300 shadow-lg hover:shadow-xl"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0 1 1 0 002 0zm-1 4a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z" clipRule="evenodd" />
+                </svg>
+                View DOS ByLaw Document
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

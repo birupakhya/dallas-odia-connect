@@ -1,7 +1,15 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Heart, Mail, Phone, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Heart, Mail, Phone, MapPin, Facebook, Twitter, Instagram, MessageSquare } from 'lucide-react';
+import PrivacyPolicyModal from './PrivacyPolicyModal';
+import TermsOfServiceModal from './TermsOfServiceModal';
+import FeedbackModal from './FeedbackModal';
 
 const Footer = () => {
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
+
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook' },
     { icon: Twitter, href: '#', label: 'Twitter' },
@@ -104,6 +112,20 @@ const Footer = () => {
               </Button>
             </div>
 
+            {/* Feedback */}
+            <div>
+              <p className="text-sm text-muted-foreground mb-3">Help us improve</p>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="w-full"
+                onClick={() => setIsFeedbackModalOpen(true)}
+              >
+                <MessageSquare className="h-4 w-4 mr-2" />
+                Share Feedback
+              </Button>
+            </div>
+
             {/* Donate */}
             <div>
               <p className="text-sm text-muted-foreground mb-3">Support our mission</p>
@@ -115,21 +137,57 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="text-sm text-muted-foreground">
-            © 2024 Dallas Odia Society. All rights reserved. | A 501(c)(3) non-profit organization
+        <div className="mt-12 pt-8 border-t border-border space-y-4">
+          {/* Main Footer Info */}
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="text-sm text-muted-foreground">
+              © 2024 Dallas Odia Society. All rights reserved. | A 501(c)(3) non-profit organization
+            </div>
+            
+            <div className="flex space-x-6 text-sm">
+              <button 
+                onClick={() => setIsPrivacyModalOpen(true)}
+                className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+              >
+                Privacy Policy
+              </button>
+              <button 
+                onClick={() => setIsTermsModalOpen(true)}
+                className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+              >
+                Terms of Service
+              </button>
+            </div>
           </div>
-          
-          <div className="flex space-x-6 text-sm">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-              Terms of Service
-            </a>
+
+          {/* Made with Love Note */}
+          <div className="text-center pt-4 border-t border-border/50">
+            <p className="text-xs text-muted-foreground">
+              This website is made with <Heart className="inline h-3 w-3 text-red-500" /> by DOS volunteers. 
+              <a 
+                href="mailto:webteam@dallasodiasociety.org" 
+                className="text-primary hover:text-primary/80 transition-colors ml-1 underline"
+              >
+                Get in touch
+              </a> if you have any questions or feedback!
+            </p>
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <PrivacyPolicyModal 
+        isOpen={isPrivacyModalOpen} 
+        onClose={() => setIsPrivacyModalOpen(false)} 
+      />
+      <TermsOfServiceModal 
+        isOpen={isTermsModalOpen} 
+        onClose={() => setIsTermsModalOpen(false)} 
+      />
+      <FeedbackModal 
+        isOpen={isFeedbackModalOpen} 
+        onClose={() => setIsFeedbackModalOpen(false)} 
+      />
     </footer>
   );
 };

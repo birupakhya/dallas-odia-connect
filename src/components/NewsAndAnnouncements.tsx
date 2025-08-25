@@ -7,34 +7,34 @@ const NewsAndAnnouncements = () => {
   const announcements = [
     {
       id: 1,
-      title: 'Kumar Purnima Celebration 2025',
-      date: '2024-11-15',
-      type: 'Event',
-      excerpt: 'Join us for the traditional Kumar Purnima celebration with cultural programs, traditional food, and community bonding.',
+      title: 'Kumar Purnima Survey 2025 - Please RSVP To KP-2025',
+      date: '2024-12-01',
+      type: 'Survey',
+      excerpt: 'Help us plan the perfect Kumar Purnima celebration for 2025. Your input is valuable in making this event a memorable experience for our entire community.',
       urgent: true,
     },
     {
       id: 2,
-      title: 'New Member Orientation',
+      title: 'Dallas Odia Society - Non-Profit Organization',
       date: '2024-11-20',
-      type: 'Meeting',
-      excerpt: 'Welcome session for new members to learn about our community, activities, and how to get involved.',
+      type: 'Information',
+      excerpt: 'DOS is a non-profit organization operated exclusively for socio-cultural and charitable purposes, serving the Odia community in DFW since 2004.',
       urgent: false,
     },
     {
       id: 3,
-      title: 'Odia Language Classes for Children',
-      date: '2024-12-01',
-      type: 'Education',
-      excerpt: 'Starting December, we will offer Odia language classes for children to help preserve our mother tongue.',
+      title: 'Mission & Vision - Home Away From Home',
+      date: '2024-11-25',
+      type: 'Community',
+      excerpt: 'Our vision is to be an inclusive Odia community where members cooperate to promote Odia culture and provide a reliable support system.',
       urgent: false,
     },
     {
       id: 4,
-      title: 'Annual Cultural Program Planning',
-      date: '2024-11-25',
-      type: 'Planning',
-      excerpt: 'Community meeting to plan our annual cultural program. All members welcome to contribute ideas.',
+      title: 'Become a Member - Join Our Community',
+      date: '2024-12-01',
+      type: 'Membership',
+      excerpt: 'If you are a person and/or family of Odisha Origin living in DFW Metroplex - we welcome you to Dallas Odia Society.',
       urgent: false,
     },
   ];
@@ -50,10 +50,10 @@ const NewsAndAnnouncements = () => {
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case 'Event': return 'bg-primary text-primary-foreground';
-      case 'Meeting': return 'bg-secondary text-secondary-foreground';
-      case 'Education': return 'bg-accent text-accent-foreground';
-      case 'Planning': return 'bg-muted text-muted-foreground';
+      case 'Survey': return 'bg-primary text-primary-foreground';
+      case 'Information': return 'bg-secondary text-secondary-foreground';
+      case 'Community': return 'bg-accent text-accent-foreground';
+      case 'Membership': return 'bg-muted text-muted-foreground';
       default: return 'bg-muted text-muted-foreground';
     }
   };
@@ -120,13 +120,13 @@ const NewsAndAnnouncements = () => {
           ))}
         </div>
 
-        {/* Newsletter Signup */}
+        {/* Email Subscription */}
         <div className="mt-16 bg-gradient-warm rounded-2xl p-8 text-center shadow-elevated">
           <h3 className="text-2xl font-serif font-semibold text-foreground mb-4">
             Stay Connected
           </h3>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Subscribe to our email newsletter to receive the latest updates about events, 
+            Please click here to subscribe to our Email group and receive the latest updates about events, 
             announcements, and community news directly in your inbox.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
@@ -136,7 +136,7 @@ const NewsAndAnnouncements = () => {
               className="flex-1 px-4 py-2 rounded-md border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             />
             <Button variant="hero">
-              Subscribe
+              Subscribe to Email Group
             </Button>
           </div>
         </div>

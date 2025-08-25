@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { ArrowRight, Users, Calendar, Heart, Star, MapPin } from 'lucide-react';
-import heroImage from '@/assets/hero-temple.jpg';
+import heroImage from '@/assets/new-hero-temple-cropped.jpg';
 import culturalDanceImage from '@/assets/cultural-dance.jpg';
+import Autoplay from 'embla-carousel-autoplay';
 
 const HeroSection = () => {
   return (
@@ -12,6 +13,9 @@ const HeroSection = () => {
           align: "start",
           loop: true,
         }}
+        plugins={[
+          Autoplay({ delay: 5000, stopOnInteraction: false })
+        ]}
         className="w-full"
       >
         <CarouselContent>
@@ -38,18 +42,19 @@ const HeroSection = () => {
                         Dallas Odia Society
                       </h1>
                       <p className="text-xl md:text-2xl font-light opacity-90">
-                        Preserving Culture, Building Community
+                        Non-Profit Organization for Socio-Cultural & Charitable Purposes
                       </p>
                       <p className="text-lg opacity-80 max-w-lg">
-                        Experience "Home Away From Home" through cultural celebrations, meaningful connections, 
-                        and an inclusive Odia community in the Dallas-Fort Worth area.
+                        DALLAS ODIA SOCIETY is a non-profit organization operated exclusively for 
+                        socio-cultural and charitable purposes, serving the Odia community in the 
+                        Dallas-Fort Worth metropolitan area.
                       </p>
                     </div>
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4">
                       <Button variant="hero" size="lg" className="group">
-                        Join Our Community
+                        Become a Member
                         <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                       </Button>
                       <Button variant="warm" size="lg">
@@ -63,15 +68,15 @@ const HeroSection = () => {
                         <div className="flex items-center justify-center mb-2">
                           <Users className="h-8 w-8" />
                         </div>
-                        <div className="text-2xl font-bold">200+</div>
-                        <div className="text-sm opacity-80">Members</div>
+                        <div className="text-2xl font-bold">20+</div>
+                        <div className="text-sm opacity-80">Years</div>
                       </div>
                       <div className="text-center">
                         <div className="flex items-center justify-center mb-2">
                           <Calendar className="h-8 w-8" />
                         </div>
-                        <div className="text-2xl font-bold">20+</div>
-                        <div className="text-sm opacity-80">Years</div>
+                        <div className="text-2xl font-bold">2004</div>
+                        <div className="text-sm opacity-80">Founded</div>
                       </div>
                       <div className="text-center">
                         <div className="flex items-center justify-center mb-2">
@@ -101,7 +106,7 @@ const HeroSection = () => {
             </div>
           </CarouselItem>
 
-          {/* Kumar Purnima Event Slide */}
+          {/* Kumar Purnima Survey 2025 Slide */}
           <CarouselItem>
             <div className="relative bg-gradient-cultural">
               {/* Background Image */}
@@ -122,64 +127,64 @@ const HeroSection = () => {
                     <div className="space-y-4">
                       <div className="flex items-center gap-2 text-yellow-300">
                         <Star className="h-6 w-6" />
-                        <span className="text-lg font-medium">Featured Event</span>
+                        <span className="text-lg font-medium">Important Survey</span>
                       </div>
                       <h1 className="text-4xl md:text-6xl font-serif font-bold leading-tight">
-                        Kumar Purnima
+                        Kumar Purnima Survey 2025
                       </h1>
                       <p className="text-xl md:text-2xl font-light opacity-90">
-                        Celebrating the Festival of Youth & Love
+                        Please RSVP To KP-2025
                       </p>
                       <p className="text-lg opacity-80 max-w-lg">
-                        Join us for one of Odisha's most beautiful festivals celebrating youth, 
-                        love, and the divine union of Radha and Krishna with traditional dances, 
-                        music, and community festivities.
+                        Help us plan the perfect Kumar Purnima celebration for 2025. 
+                        Your input is valuable in making this event a memorable experience 
+                        for our entire community.
                       </p>
                     </div>
 
-                    {/* Event Details */}
+                    {/* Survey Details */}
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 space-y-4">
                       <div className="flex items-center gap-3">
                         <Calendar className="h-5 w-5 text-yellow-300" />
-                        <span className="text-lg font-medium">November 15, 2024</span>
+                        <span className="text-lg font-medium">Planning for 2025</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <MapPin className="h-5 w-5 text-yellow-300" />
-                        <span>Community Center, Dallas</span>
+                        <span>Dallas-Fort Worth Area</span>
                       </div>
                     </div>
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4">
                       <Button variant="hero" size="lg" className="group">
-                        Register Now
+                        Take Survey Now
                         <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                       </Button>
                       <Button variant="warm" size="lg">
-                        Event Details
+                        Learn About KP-2025
                       </Button>
                     </div>
                   </div>
 
-                  {/* Event Highlights Card */}
+                  {/* Survey Highlights Card */}
                   <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-elevated border border-white/20">
-                    <h3 className="text-2xl font-serif font-semibold text-white mb-6">Event Highlights</h3>
+                    <h3 className="text-2xl font-serif font-semibold text-white mb-6">Survey Topics</h3>
                     <div className="space-y-4 text-white/90">
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
-                        <span>Traditional Odissi dance performances</span>
+                        <span>Preferred event date and time</span>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
-                        <span>Authentic Odia cuisine and sweets</span>
+                        <span>Venue preferences and accessibility</span>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
-                        <span>Cultural games and activities for all ages</span>
+                        <span>Cultural activities and performances</span>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
-                        <span>Community bonding and networking</span>
+                        <span>Food preferences and dietary requirements</span>
                       </div>
                     </div>
                   </div>
