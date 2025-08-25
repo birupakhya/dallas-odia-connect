@@ -11,8 +11,8 @@ const Index = () => {
       <Navigation />
       <main>
         <HeroSection />
-        <QuickActions />
         <NewsAndAnnouncements />
+        <QuickActions />
         <CommunityShowcase />
       </main>
       <Footer />
