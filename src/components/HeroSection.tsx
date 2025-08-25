@@ -4,6 +4,7 @@ import { ArrowRight, Users, Calendar, Heart, Star, MapPin } from 'lucide-react';
 import heroImage from '@/assets/new-hero-temple-cropped.jpg';
 import culturalDanceImage from '@/assets/cultural-dance.jpg';
 import Autoplay from 'embla-carousel-autoplay';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
@@ -53,13 +54,17 @@ const HeroSection = () => {
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4">
-                      <Button variant="hero" size="lg" className="group">
-                        Become a Member
-                        <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                      <Button variant="warm" size="lg">
-                        Learn More
-                      </Button>
+                      <Link to="/get-involved/membership">
+                        <Button variant="hero" size="lg" className="group">
+                          Become a Member
+                          <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </Link>
+                      <Link to="/about">
+                        <Button variant="warm" size="lg">
+                          Learn More
+                        </Button>
+                      </Link>
                     </div>
 
                     {/* Stats */}
