@@ -54,9 +54,10 @@ const AboutUs = () => {
           <div className="bg-gradient-warm rounded-2xl p-8 md:p-12 text-center">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6">Our Mission</h2>
             <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              To foster unity among the Odia community while celebrating our ancient traditions, promoting cultural education, 
-              and creating opportunities for the next generation to connect with their roots. We believe in the power of 
-              community to create positive change and preserve our beautiful heritage for future generations.
+              To foster unity and togetherness within the Dallas Odia Society by celebrating and promoting the rich heritage of Odia culture and language. Through inclusive events, charitable initiatives, and meaningful engagement, we aim to create a safe, welcoming environment where families can connect, children can thrive, and traditions are honored with pride.
+            </p>
+            <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed mt-6">
+              We are committed to building a vibrant cultural space in our community that inspires belonging, nurtures growth, and strengthens the bonds that unite us.
             </p>
           </div>
         </section>
