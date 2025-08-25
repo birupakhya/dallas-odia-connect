@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -7,6 +7,22 @@ import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const submenuRef = useRef<HTMLDivElement>(null);
+
+  // Close submenu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (submenuRef.current && !submenuRef.current.contains(event.target as Node)) {
+        setOpenSubmenu(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const navItems = [
     { name: 'Home', href: '/' },
@@ -33,7 +49,7 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="bg-background/95 backdrop-blur-sm border-b border-border/40 sticky top-0 z-50 shadow-warm">
+    <nav ref={submenuRef} className="bg-background/95 backdrop-blur-sm border-b border-border/40 sticky top-0 z-50 shadow-warm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -57,21 +73,37 @@ const Navigation = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {navItems.map((item) => (
-                <div key={item.name} className="relative group">
-                  <Link
-                    to={item.href}
-                    className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"
-                  >
-                    {item.name}
-                  </Link>
+                <div key={item.name} className="relative">
+                  <div className="flex items-center">
+                    <Link
+                      to={item.href}
+                      className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"
+                    >
+                      {item.name}
+                    </Link>
+                    {item.submenu && (
+                      <button
+                        onClick={() => setOpenSubmenu(openSubmenu === item.name ? null : item.name)}
+                        className="ml-1 p-1 hover:text-primary transition-colors"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
                   {item.submenu && (
-                    <div className="absolute left-0 mt-2 w-48 bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <div className={cn(
+                      "absolute left-0 mt-2 w-48 bg-background border border-border rounded-md shadow-lg transition-all duration-300 z-50",
+                      openSubmenu === item.name ? "opacity-100 visible" : "opacity-0 invisible"
+                    )}>
                       <div className="py-1">
                         {item.submenu.map((subItem) => (
                           <Link
                             key={subItem.name}
                             to={subItem.href}
                             className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors"
+                            onClick={() => setOpenSubmenu(null)}
                           >
                             {subItem.name}
                           </Link>
@@ -110,21 +142,39 @@ const Navigation = () => {
         <div className="px-2 pt-2 pb-3 space-y-1 bg-muted/50 backdrop-blur-sm">
           {navItems.map((item) => (
             <div key={item.name}>
-              <Link
-                to={item.href}
-                className="text-foreground hover:text-primary block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
+              <div className="flex items-center justify-between">
+                <Link
+                  to={item.href}
+                  className="text-foreground hover:text-primary block px-3 py-2 rounded-md text-base font-medium flex-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+                {item.submenu && (
+                  <button
+                    onClick={() => setOpenSubmenu(openSubmenu === item.name ? null : item.name)}
+                    className="p-2 hover:text-primary transition-colors"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                )}
+              </div>
               {item.submenu && (
-                <div className="ml-4 space-y-1">
+                <div className={cn(
+                  "ml-4 space-y-1 transition-all duration-300",
+                  openSubmenu === item.name ? "max-h-48 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+                )}>
                   {item.submenu.map((subItem) => (
                     <Link
                       key={subItem.name}
                       to={subItem.href}
                       className="text-muted-foreground hover:text-primary block px-3 py-1 rounded-md text-sm"
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        setOpenSubmenu(null);
+                      }}
                     >
                       {subItem.name}
                     </Link>
