@@ -341,8 +341,8 @@ const EventGallery = () => {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {events.slice(1, 7).map((event) => {
-              const eventPhotos = eventPhotos.filter(photo => photo.category === event);
-              const eventType = eventPhotos[0]?.eventType || 'Cultural Events';
+              const eventPhotosForEvent = eventPhotos.filter(photo => photo.category === event);
+              const eventType = eventPhotosForEvent[0]?.eventType || 'Cultural Events';
               
               return (
                 <Card key={event} className="hover:shadow-lg transition-shadow duration-300">
@@ -358,7 +358,7 @@ const EventGallery = () => {
                     <div className="flex items-center gap-4 text-sm">
                       <div className="flex items-center gap-1 text-muted-foreground">
                         <Image className="h-4 w-4" />
-                        <span>{eventPhotos.length} photos</span>
+                        <span>{eventPhotosForEvent.length} photos</span>
                       </div>
                       <div className="flex items-center gap-1 text-muted-foreground">
                         <Play className="h-4 w-4" />
