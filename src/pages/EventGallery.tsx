@@ -1,3 +1,5 @@
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -223,6 +225,7 @@ const EventGallery = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
+      <Navigation />
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-r from-primary/10 to-secondary/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -399,6 +402,7 @@ const EventGallery = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };
