@@ -9,6 +9,7 @@ import BecomeMember from "./pages/BecomeMember";
 import BecomeSponsor from "./pages/BecomeSponsor";
 import NotFound from "./pages/NotFound";
 import FeedbackButton from "./components/FeedbackButton";
+import FaviconUpdater from "./components/FaviconUpdater";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <FaviconUpdater />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<AboutUs />} />
