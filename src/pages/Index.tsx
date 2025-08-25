@@ -2,6 +2,7 @@ import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import QuickActions from '@/components/QuickActions';
 import NewsAndAnnouncements from '@/components/NewsAndAnnouncements';
+import MemorialSection from '@/components/MemorialSection';
 import CommunityShowcase from '@/components/CommunityShowcase';
 import Footer from '@/components/Footer';
 
@@ -13,6 +14,7 @@ const Index = () => {
         <HeroSection />
         <NewsAndAnnouncements />
         <QuickActions />
+        <MemorialSection />
         <CommunityShowcase />
       </main>
       <Footer />
