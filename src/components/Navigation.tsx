@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import dosLogo from '@/assets/dos-logo.jpg';
+import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,7 +38,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="flex-shrink-0 flex items-center space-x-3">
+            <Link to="/" className="flex-shrink-0 flex items-center space-x-3">
               <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shadow-cultural hover:border-primary/40 transition-colors duration-300 bg-white p-1">
                 <img 
                   src={dosLogo} 
@@ -49,7 +50,7 @@ const Navigation = () => {
                 <h1 className="text-xl font-serif font-bold gradient-text">Dallas Odia Society</h1>
                 <p className="text-xs text-muted-foreground">Home Away From Home</p>
               </div>
-            </div>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -57,34 +58,34 @@ const Navigation = () => {
             <div className="ml-10 flex items-baseline space-x-4">
               {navItems.map((item) => (
                 <div key={item.name} className="relative group">
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.href}
                     className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                   {item.submenu && (
                     <div className="absolute left-0 mt-2 w-48 bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                       <div className="py-1">
                         {item.submenu.map((subItem) => (
-                          <a
+                          <Link
                             key={subItem.name}
-                            href={subItem.href}
+                            to={subItem.href}
                             className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors"
                           >
                             {subItem.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
                   )}
                 </div>
               ))}
-              <a href="/get-involved/sponsor">
+              <Link to="/get-involved/sponsor">
                 <Button variant="hero" size="sm" className="ml-4">
                   Become a Sponsor
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -109,35 +110,35 @@ const Navigation = () => {
         <div className="px-2 pt-2 pb-3 space-y-1 bg-muted/50 backdrop-blur-sm">
           {navItems.map((item) => (
             <div key={item.name}>
-              <a
-                href={item.href}
+              <Link
+                to={item.href}
                 className="text-foreground hover:text-primary block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
-              </a>
+              </Link>
               {item.submenu && (
                 <div className="ml-4 space-y-1">
                   {item.submenu.map((subItem) => (
-                    <a
+                    <Link
                       key={subItem.name}
-                      href={subItem.href}
+                      to={subItem.href}
                       className="text-muted-foreground hover:text-primary block px-3 py-1 rounded-md text-sm"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {subItem.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               )}
             </div>
           ))}
                       <div className="px-3 py-2">
-              <a href="/get-involved/sponsor">
+              <Link to="/get-involved/sponsor">
                 <Button variant="hero" size="sm" className="w-full">
                   Become a Sponsor
                 </Button>
-              </a>
+              </Link>
             </div>
         </div>
       </div>
