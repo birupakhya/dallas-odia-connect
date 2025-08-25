@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import AboutUs from "./pages/AboutUs";
 import BecomeMember from "./pages/BecomeMember";
 import BecomeSponsor from "./pages/BecomeSponsor";
+import Events from "./pages/Events";
 import NotFound from "./pages/NotFound";
 import FeedbackButton from "./components/FeedbackButton";
 import FaviconUpdater from "./components/FaviconUpdater";
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/about" element={<AboutUs />} />
           <Route path="/get-involved/membership" element={<BecomeMember />} />
           <Route path="/get-involved/sponsor" element={<BecomeSponsor />} />
+          <Route path="/events" element={<Events />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
