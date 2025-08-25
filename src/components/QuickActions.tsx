@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Link } from 'react-router-dom';
 import { 
   Users, 
   Calendar, 
@@ -22,21 +23,21 @@ const QuickActions = () => {
       title: 'Upcoming Events',
       description: 'Join our cultural celebrations and community gatherings',
       icon: Calendar,
-      href: '/events',
+      href: '/events/upcoming',
       variant: 'cultural' as const,
     },
     {
       title: 'Become a Member',
       description: 'Join our growing family and experience community',
       icon: Users,
-      href: '/membership',
+      href: '/get-involved/membership',
       variant: 'hero' as const,
     },
     {
-      title: 'Support Us',
+      title: 'Become a Sponsor',
       description: 'Help us continue our cultural and charitable mission',
       icon: Heart,
-      href: '/donate',
+      href: '/get-involved/sponsor',
       variant: 'secondary' as const,
     },
     {
@@ -65,31 +66,33 @@ const QuickActions = () => {
           {actions.map((action, index) => {
             const IconComponent = action.icon;
             return (
-              <Card 
+              <Link 
                 key={action.title} 
-                className="group hover:shadow-warm transition-all duration-300 hover:-translate-y-1 border-border/50"
+                to={action.href}
+                className="block group"
               >
-                <CardContent className="p-6 text-center space-y-4">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-hero rounded-full shadow-cultural group-hover:animate-float">
-                    <IconComponent className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground">
-                    {action.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {action.description}
-                  </p>
-                  <Button 
-                    variant={action.variant} 
-                    className="w-full mt-4"
-                    asChild
-                  >
-                    <a href={action.href}>
+                <Card 
+                  className="group hover:shadow-warm transition-all duration-300 hover:-translate-y-1 border-border/50 cursor-pointer"
+                >
+                  <CardContent className="p-6 text-center space-y-4">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-hero rounded-full shadow-cultural group-hover:animate-float">
+                      <IconComponent className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-foreground">
+                      {action.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {action.description}
+                    </p>
+                    <Button 
+                      variant={action.variant} 
+                      className="w-full mt-4"
+                    >
                       Learn More
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Link>
             );
           })}
         </div>
