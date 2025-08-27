@@ -23,6 +23,7 @@ Command.displayName = CommandPrimitive.displayName
 
 interface CommandDialogProps extends DialogProps {
   // Extends DialogProps interface
+  children?: React.ReactNode;
 }
 
 const CommandDialog = ({ children, ...props }: CommandDialogProps) => {

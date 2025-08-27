@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { 
@@ -100,17 +100,17 @@ const PhotoGallery = ({ photos, isOpen, onClose, initialPhotoIndex = 0 }: PhotoG
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, currentIndex, zoom, showThumbnails]);
+  }, [isOpen, currentIndex, zoom, showThumbnails, goToNext, goToPrevious, onClose, toggleFullscreen, zoomIn, zoomOut, resetZoom, rotateImage]);
 
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : photos.length - 1));
-  };
+  }, [photos.length]);
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setCurrentIndex((prev) => (prev < photos.length - 1 ? prev + 1 : 0));
-  };
+  }, [photos.length]);
 
-  const toggleFullscreen = () => {
+  const toggleFullscreen = useCallback(() => {
     if (!document.fullscreenElement) {
       containerRef.current?.requestFullscreen();
       setIsFullscreen(true);
@@ -118,24 +118,24 @@ const PhotoGallery = ({ photos, isOpen, onClose, initialPhotoIndex = 0 }: PhotoG
       document.exitFullscreen();
       setIsFullscreen(false);
     }
-  };
+  }, []);
 
-  const zoomIn = () => {
+  const zoomIn = useCallback(() => {
     setZoom((prev) => Math.min(prev * 1.5, 5));
-  };
+  }, []);
 
-  const zoomOut = () => {
+  const zoomOut = useCallback(() => {
     setZoom((prev) => Math.max(prev / 1.5, 0.1));
-  };
+  }, []);
 
-  const resetZoom = () => {
+  const resetZoom = useCallback(() => {
     setZoom(1);
     setPosition({ x: 0, y: 0 });
-  };
+  }, []);
 
-  const rotateImage = () => {
+  const rotateImage = useCallback(() => {
     setRotation((prev) => (prev + 90) % 360);
-  };
+  }, []);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (zoom > 1) {
