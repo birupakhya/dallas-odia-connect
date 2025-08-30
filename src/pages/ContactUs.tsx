@@ -6,12 +6,11 @@ import { Badge } from '@/components/ui/badge';
 import { Mail, Phone, MapPin, Clock, MessageSquare, Send } from 'lucide-react';
 
 const ContactUs = () => {
-  // Google Form URL - replace with your actual Google Form URL
-  // To get the embedded URL, go to your Google Form, click "Send", then "Embed" tab
-  const googleFormUrl = "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true";
+  // Google Form URL - Contact Us form
+  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc14vHvsWPMa9x0Shxv9zRGwG-t8OFw2uTamW30GkbNXCN7DA/viewform?embedded=true";
   
-  // Set this to true when you have a Google Form URL
-  const hasGoogleForm = false;
+  // Google Form is ready
+  const hasGoogleForm = true;
 
   const contactInfo = [
     {
@@ -98,28 +97,7 @@ const ContactUs = () => {
                 ))}
               </div>
 
-              {/* Additional Information */}
-              <Card className="border-0 bg-gradient-to-r from-primary/5 to-secondary/5 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-xl font-serif text-primary">
-                    Community Hours
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Monday - Friday</span>
-                    <span className="font-medium">9:00 AM - 6:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Saturday</span>
-                    <span className="font-medium">10:00 AM - 4:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Sunday</span>
-                    <span className="font-medium">By Appointment</span>
-                  </div>
-                </CardContent>
-              </Card>
+
             </div>
 
             {/* Google Form Embed */}
@@ -175,34 +153,7 @@ const ContactUs = () => {
                 </CardContent>
               </Card>
 
-              {/* Alternative Contact Methods */}
-              <Card className="border-0 bg-gradient-to-r from-accent/5 to-primary/5 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-lg font-serif text-primary">
-                    Alternative Contact Methods
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <Mail className="h-4 w-4 text-primary" />
-                    <span className="text-sm">
-                      <strong>Email:</strong> info@dallasodiasociety.org
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Phone className="h-4 w-4 text-primary" />
-                    <span className="text-sm">
-                      <strong>Phone:</strong> (972) 555-0123
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <MessageSquare className="h-4 w-4 text-primary" />
-                    <span className="text-sm">
-                      <strong>Social Media:</strong> Follow us on Facebook and WhatsApp
-                    </span>
-                  </div>
-                </CardContent>
-              </Card>
+
             </div>
           </div>
         </div>
