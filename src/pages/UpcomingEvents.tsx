@@ -33,9 +33,9 @@ const UpcomingEvents = () => {
       description: 'Annual Kumar Purnima celebration with traditional rituals, cultural performances, and community bonding.',
       category: 'Cultural Events',
       status: 'Registration Open',
-      capacity: 200,
-      registered: 145,
-      price: '$25',
+      // capacity: 200, // Commented out for now
+      // registered: 145, // Commented out for now
+      // price: '$25', // Commented out for now
       featured: true,
       highlights: ['Traditional rituals', 'Cultural performances', 'Odia cuisine']
     }
@@ -253,10 +253,10 @@ const UpcomingEvents = () => {
                         <MapPin className="h-4 w-4" />
                         <span className="text-sm">{event.location}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-muted-foreground">
+                      {/* <div className="flex items-center gap-2 text-muted-foreground">
                         <Users className="h-4 w-4" />
                         <span className="text-sm">{event.registered}/{event.capacity} registered</span>
-                      </div>
+                      </div> */}
                     </div>
 
                     {/* Description */}
@@ -277,8 +277,8 @@ const UpcomingEvents = () => {
                       </div>
                     </div>
 
-                    {/* Registration Progress */}
-                    <div className="space-y-2">
+                    {/* Registration Progress - Commented out for now */}
+                    {/* <div className="space-y-2">
                       <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">Registration</span>
                         <span className="font-medium">{Math.round(getRegistrationProgress(event.registered, event.capacity))}%</span>
@@ -289,17 +289,20 @@ const UpcomingEvents = () => {
                           style={{ width: `${getRegistrationProgress(event.registered, event.capacity)}%` }}
                         ></div>
                       </div>
-                    </div>
+                    </div> */}
 
-                    {/* Price and Action */}
-                    <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                      <div className="text-lg font-semibold text-primary">
-                        {event.price}
-                      </div>
-                      <Button variant="outline" size="sm" className="group">
-                        View Details
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </Button>
+                    {/* Action Button */}
+                    <div className="flex justify-center pt-4">
+                      <a
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSf47ibky7itILgmXoLGUZUmxu8-SeFkNc3YlAcOSgehu8PdTg/viewform"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button variant="hero" size="sm" className="group">
+                          Register
+                          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </a>
                     </div>
                   </CardContent>
                 </Card>

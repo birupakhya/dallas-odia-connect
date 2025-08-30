@@ -247,16 +247,23 @@ const Events = () => {
                       <MapPin className="h-4 w-4" />
                       <span>{event.location}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-muted-foreground">
+                    {/* <div className="flex items-center gap-2 text-muted-foreground">
                       <Users className="h-4 w-4" />
                       <span>{event.attendees} registered</span>
-                    </div>
+                    </div> */}
                   </div>
                   <p className="text-muted-foreground">{event.description}</p>
                   <div className="flex gap-2">
-                    <Button variant="default" className="flex-1">
-                      Register Now
-                    </Button>
+                    <a
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSf47ibky7itILgmXoLGUZUmxu8-SeFkNc3YlAcOSgehu8PdTg/viewform"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1"
+                    >
+                      <Button variant="hero" className="w-full">
+                        Register
+                      </Button>
+                    </a>
                     <Button 
                       variant="outline" 
                       onClick={() => setSelectedEvent(event)}
