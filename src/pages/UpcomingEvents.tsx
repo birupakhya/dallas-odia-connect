@@ -27,9 +27,9 @@ const UpcomingEvents = () => {
     {
       id: '1',
       title: 'Kumar Purnima 2025',
-      date: 'October 15, 2025',
-      time: '6:00 PM - 10:00 PM',
-      location: 'Dallas Convention Center',
+      date: 'November 1st, 2025',
+      time: '12 PM - 11 PM',
+      location: '200 S. Heartz Road, Coppell 75019',
       description: 'Annual Kumar Purnima celebration with traditional rituals, cultural performances, and community bonding.',
       category: 'Cultural Events',
       status: 'Registration Open',

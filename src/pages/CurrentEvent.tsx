@@ -22,10 +22,10 @@ const CurrentEvent = () => {
   const currentEvent = {
     title: "Kumar Purnima 2025",
     status: "Registration Open",
-    date: "October 15, 2025",
-    time: "6:00 PM - 10:00 PM",
-    location: "Dallas Convention Center",
-    address: "650 S Griffin St, Dallas, TX 75202",
+    date: "November 1st, 2025",
+    time: "12 PM - 11 PM",
+    location: "Coppell",
+    address: "200 S. Heartz Road, Coppell 75019",
     description: "Join us for the most anticipated cultural celebration of the year! Kumar Purnima 2025 promises to be an unforgettable evening filled with traditional rituals, mesmerizing cultural performances, and community bonding.",
     longDescription: `Kumar Purnima, also known as Kumara Purnima, is one of the most significant festivals celebrated by the Odia community. This year, we're bringing together the best of Odia culture, tradition, and community spirit in a grand celebration that you won't want to miss.
 
@@ -54,13 +54,14 @@ Our event will feature:
       "Community networking"
     ],
     schedule: [
-      { time: "6:00 PM", activity: "Registration & Welcome" },
-      { time: "6:30 PM", activity: "Traditional Rituals" },
-      { time: "7:15 PM", activity: "Cultural Performances" },
-      { time: "8:00 PM", activity: "Dinner & Socializing" },
-      { time: "9:00 PM", activity: "Children's Activities" },
-      { time: "9:30 PM", activity: "Community Networking" },
-      { time: "10:00 PM", activity: "Closing Ceremony" }
+      { time: "12:00 PM", activity: "Registration & Welcome" },
+      { time: "12:30 PM", activity: "Traditional Kumar Purnima Rituals" },
+      { time: "2:00 PM", activity: "Cultural Performances" },
+      { time: "4:00 PM", activity: "Children's Activities & Games" },
+      { time: "6:00 PM", activity: "Dinner & Community Socializing" },
+      { time: "8:00 PM", activity: "Evening Cultural Programs" },
+      { time: "10:00 PM", activity: "Community Networking" },
+      { time: "11:00 PM", activity: "Closing Ceremony" }
     ],
     performers: [
       "Odissi Dance Group - Dallas",

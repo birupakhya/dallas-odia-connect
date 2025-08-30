@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { ArrowRight, Users, Calendar, Heart, Star, MapPin } from 'lucide-react';
+import { ArrowRight, Users, Calendar, Heart, Star, MapPin, Clock } from 'lucide-react';
 import heroImage from '@/assets/new-hero-temple-cropped.jpg';
 import culturalDanceImage from '@/assets/cultural-dance.jpg';
 import Autoplay from 'embla-carousel-autoplay';
@@ -147,24 +147,34 @@ const HeroSection = () => {
                       </p>
                     </div>
 
-                    {/* Survey Details */}
+                    {/* Event Details */}
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 space-y-4">
                       <div className="flex items-center gap-3">
                         <Calendar className="h-5 w-5 text-yellow-300" />
-                        <span className="text-lg font-medium">Planning for 2025</span>
+                        <span className="text-lg font-medium">November 1st, 2025</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Clock className="h-5 w-5 text-yellow-300" />
+                        <span>12 PM - 11 PM</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <MapPin className="h-5 w-5 text-yellow-300" />
-                        <span>Dallas-Fort Worth Area</span>
+                        <span>200 S. Heartz Road, Coppell 75019</span>
                       </div>
                     </div>
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4">
-                      <Button variant="hero" size="lg" className="group">
-                        Take Survey Now
-                        <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-                      </Button>
+                      <a 
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSf47ibky7itILgmXoLGUZUmxu8-SeFkNc3YlAcOSgehu8PdTg/viewform" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                      >
+                        <Button variant="hero" size="lg" className="group">
+                          Take Survey Now
+                          <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </a>
                       <Button variant="warm" size="lg">
                         Learn About KP-2025
                       </Button>

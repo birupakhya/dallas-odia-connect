@@ -111,10 +111,23 @@ const NewsAndAnnouncements = () => {
                   {announcement.excerpt}
                 </p>
                 
-                <Button variant="ghost" className="group/btn p-0 h-auto">
-                  Read More 
-                  <ArrowRight className="h-4 w-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
+                {announcement.type === 'Survey' ? (
+                  <a 
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSf47ibky7itILgmXoLGUZUmxu8-SeFkNc3YlAcOSgehu8PdTg/viewform" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="ghost" className="group/btn p-0 h-auto">
+                      Take Survey Now
+                      <ArrowRight className="h-4 w-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
+                  </a>
+                ) : (
+                  <Button variant="ghost" className="group/btn p-0 h-auto">
+                    Read More 
+                    <ArrowRight className="h-4 w-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                )}
               </CardContent>
             </Card>
           ))}
