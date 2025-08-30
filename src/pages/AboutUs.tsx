@@ -9,19 +9,19 @@ const AboutUs = () => {
   const boardMembers = [
     {
       name: "Amitabh Mishra",
-      title: "President",
+      // title: "President",
       image: amitabhHeadshot,
       bio: "Amitabh grew up in Burla, and came to the US as a student at Texas A&M University. He worked at Intel, SAP, GE and Novartis prior to his current stint at Accenture Advisory Services. Before his current role at DOS, he served as Treasurer. His leadership philosophy is to provide a fun, safe and secure environment to the community while ensuring ethical behavior. He lives with his family in Murphy, TX."
     },
     {
       name: "Sobhan Samantaray",
-      title: "Vice President",
+      // title: "Vice President",
       image: boardMember2,
       bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     {
       name: "Jayabrata Tripathy",
-      title: "Secretary",
+      // title: "Secretary",
       image: boardMember3,
       bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     }
@@ -74,7 +74,7 @@ const AboutUs = () => {
                     <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary/40 transition-colors duration-300">
                       <img 
                         src={member.image} 
-                        alt={`${member.name} - ${member.title}`}
+                        alt={`${member.name} - Board Member`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
@@ -82,9 +82,9 @@ const AboutUs = () => {
                   <CardTitle className="text-xl md:text-2xl font-serif text-primary">
                     {member.name}
                   </CardTitle>
-                  <CardDescription className="text-accent font-medium text-base">
+                  {/* <CardDescription className="text-accent font-medium text-base">
                     {member.title}
-                  </CardDescription>
+                  </CardDescription> */}
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground leading-relaxed text-center">
