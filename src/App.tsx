@@ -12,6 +12,7 @@ import CurrentEvent from "./pages/CurrentEvent";
 import UpcomingEvents from "./pages/UpcomingEvents";
 import PastEvents from "./pages/PastEvents";
 import EventGallery from "./pages/EventGallery";
+import ContactUs from "./pages/ContactUs";
 import NotFound from "./pages/NotFound";
 import FeedbackButton from "./components/FeedbackButton";
 import FaviconUpdater from "./components/FaviconUpdater";
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/events/upcoming" element={<UpcomingEvents />} />
           <Route path="/events/past" element={<PastEvents />} />
           <Route path="/events/gallery" element={<EventGallery />} />
+          <Route path="/contact" element={<ContactUs />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
