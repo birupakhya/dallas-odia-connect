@@ -117,19 +117,20 @@ const Events = () => {
       status: 'upcoming',
       category: 'Cultural Events',
       photos: samplePhotos.filter(p => p.category === 'Cultural Events')
-    },
-    {
-      id: '2',
-      title: 'Odia Language Classes',
-      date: 'Every Saturday',
-      time: '10:00 AM - 12:00 PM',
-      location: 'Irving Community Center',
-      description: 'Weekly Odia language classes for children and adults. Learn to read, write, and speak Odia.',
-      attendees: 25,
-      status: 'ongoing',
-      category: 'Educational',
-      photos: samplePhotos.filter(p => p.category === 'Educational')
     }
+    // Commented out other events for now
+    // {
+    //   id: '2',
+    //   title: 'Odia Language Classes',
+    //   date: 'Every Saturday',
+    //   time: '10:00 AM - 12:00 PM',
+    //   location: 'Irving Community Center',
+    //   description: 'Weekly Odia language classes for children and adults. Learn to read, write, and speak Odia.',
+    //   attendees: 25,
+    //   status: 'ongoing',
+    //   category: 'Educational',
+    //   photos: samplePhotos.filter(p => p.category === 'Educational')
+    // }
   ];
 
   const pastEvents: Event[] = [

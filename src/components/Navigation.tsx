@@ -39,7 +39,7 @@ const Navigation = () => {
       name: 'Events', 
       href: '/events',
       submenu: [
-        { name: 'Current Event', href: '/events/current' },
+        // { name: 'Current Event', href: '/events/current' }, // Commented out for now
         { name: 'Upcoming Events', href: '/events/upcoming' },
         { name: 'Past Events', href: '/events/past' },
         { name: 'Past Event Photos and Videos', href: '/events/gallery' },
