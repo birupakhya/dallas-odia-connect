@@ -9,10 +9,10 @@ import boardMember4 from '@/assets/board-member-4.jpg';
 const AboutUs = () => {
   const boardMembers = [
     {
-      name: "Rajesh Kumar Pattnaik",
+      name: "Amitabh Mishra",
       title: "President",
       image: boardMember1,
-      bio: "Rajesh has been serving the Odia community for over 25 years. A successful entrepreneur and philanthropist, he has dedicated his life to preserving Odia culture and supporting community initiatives. Under his leadership, our organization has grown from a small local group to a thriving community center."
+      bio: "Amitabh grew up in Burla, and came to the US as a student at Texas A&M University. He worked at Intel, SAP, GE and Novartis prior to his current stint at Accenture Advisory Services. Before his current role at DOS, he served as Treasurer. His leadership philosophy is to provide a fun, safe and secure environment to the community while ensuring ethical behavior. He lives with his family in Murphy, TX."
     },
     {
       name: "Dr. Sunita Mohapatra",
