@@ -2,25 +2,25 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Heart, Calendar, User } from 'lucide-react';
 
 const MemorialSection = () => {
-  // Sample memorial data - replace with actual community members
+  // Sample memorial data - using lorem ipsum for placeholder content
   const memorials = [
     {
       id: '1',
-      name: 'Dr. Rajendra Kumar Patnaik',
-      dates: '1945 - 2024',
+      name: 'Lorem Ipsum Dolor',
+      dates: '1940 - 2024',
       photo: '/api/placeholder/200/200',
-      tribute: 'A beloved community leader and founding member of DOS who dedicated his life to preserving Odia culture and fostering community bonds. His wisdom, kindness, and commitment to our heritage will forever inspire us.',
-      family: 'Survived by his wife, children, and grandchildren',
-      dateOfPassing: 'October 15, 2024'
+      tribute: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      family: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      dateOfPassing: 'December 15, 2024'
     },
     {
       id: '2',
-      name: 'Smt. Meera Devi',
-      dates: '1952 - 2024',
+      name: 'Sit Amet Consectetur',
+      dates: '1955 - 2024',
       photo: '/api/placeholder/200/200',
-      tribute: 'A devoted mother, grandmother, and cultural ambassador who brought the warmth of Odia hospitality to our community. Her traditional cooking and storytelling enriched our cultural celebrations.',
-      family: 'Survived by her children and extended family',
-      dateOfPassing: 'September 28, 2024'
+      tribute: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      family: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      dateOfPassing: 'November 28, 2024'
     }
   ];
 
