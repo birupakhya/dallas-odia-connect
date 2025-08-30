@@ -4,7 +4,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import boardMember1 from '@/assets/board-member-1.jpg';
 import boardMember2 from '@/assets/board-member-2.jpg';
 import boardMember3 from '@/assets/board-member-3.jpg';
-import boardMember4 from '@/assets/board-member-4.jpg';
 
 const AboutUs = () => {
   const boardMembers = [
@@ -15,22 +14,16 @@ const AboutUs = () => {
       bio: "Amitabh grew up in Burla, and came to the US as a student at Texas A&M University. He worked at Intel, SAP, GE and Novartis prior to his current stint at Accenture Advisory Services. Before his current role at DOS, he served as Treasurer. His leadership philosophy is to provide a fun, safe and secure environment to the community while ensuring ethical behavior. He lives with his family in Murphy, TX."
     },
     {
-      name: "Dr. Sunita Mohapatra",
+      name: "Sobhan Samantaray",
       title: "Vice President",
       image: boardMember2,
-      bio: "Dr. Sunita is a respected physician and community advocate. She has been instrumental in organizing health awareness programs and educational initiatives. Her passion for community service and cultural preservation has made her an invaluable leader in our organization."
+      bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     {
-      name: "Biswanath Sahoo",
+      name: "Jayabrata Tripathy",
       title: "Secretary",
       image: boardMember3,
-      bio: "Biswanath brings over 30 years of corporate experience to our board. His expertise in organizational management and strategic planning has helped streamline our operations and expand our community outreach programs. He is also a talented classical musician."
-    },
-    {
-      name: "Meera Dash",
-      title: "Treasurer",
-      image: boardMember4,
-      bio: "Meera is a certified accountant with extensive experience in non-profit financial management. She ensures our organization maintains fiscal responsibility while supporting various community programs. Her attention to detail and commitment to transparency has earned the trust of our entire community."
+      bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     }
   ];
 
