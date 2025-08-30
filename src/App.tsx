@@ -16,6 +16,7 @@ import ContactUs from "./pages/ContactUs";
 import NotFound from "./pages/NotFound";
 import FeedbackButton from "./components/FeedbackButton";
 import FaviconUpdater from "./components/FaviconUpdater";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <FaviconUpdater />
         <Routes>
           <Route path="/" element={<Index />} />
