@@ -27,6 +27,34 @@ const AboutUs = () => {
     }
   ];
 
+  // Event Committee data
+  const eventCommittee = [
+    {
+      name: "Lorem Ipsum Dolor",
+      // image: eventMember1, // Add image when available
+      bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    {
+      name: "Sit Amet Consectetur",
+      // image: eventMember2, // Add image when available
+      bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    }
+  ];
+
+  // Grievance Committee data
+  const grievanceCommittee = [
+    {
+      name: "Adipiscing Elit Sed",
+      // image: grievanceMember1, // Add image when available
+      bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    {
+      name: "Eiusmod Tempor Incididunt",
+      // image: grievanceMember2, // Add image when available
+      bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -94,6 +122,102 @@ const AboutUs = () => {
                   {/* <CardDescription className="text-accent font-medium text-base">
                     {member.title}
                   </CardDescription> */}
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground leading-relaxed text-center">
+                    {member.bio}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Event Committee */}
+        <section className="mt-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold gradient-text mb-4">
+              Event Committee
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our dedicated event committee works tirelessly to create memorable cultural celebrations, 
+              community gatherings, and educational programs that bring our community together.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {eventCommittee.map((member, index) => (
+              <Card key={index} className="group hover:shadow-cultural transition-all duration-300 border-0 bg-card/50 backdrop-blur-sm">
+                <CardHeader className="text-center">
+                  <div className="relative mx-auto mb-6">
+                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary/40 transition-colors duration-300">
+                      {member.image ? (
+                        <img 
+                          src={member.image} 
+                          alt={`${member.name} - Event Committee Member`}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-muted/50 flex items-center justify-center">
+                          <div className="text-center">
+                            <div className="text-4xl text-muted-foreground/50 mb-2">👤</div>
+                            <div className="text-xs text-muted-foreground">Photo Coming Soon</div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <CardTitle className="text-xl md:text-2xl font-serif text-primary">
+                    {member.name}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground leading-relaxed text-center">
+                    {member.bio}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Grievance Committee */}
+        <section className="mt-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold gradient-text mb-4">
+              Grievance Committee
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our grievance committee ensures fair and transparent resolution of community concerns, 
+              maintaining harmony and trust within our organization through impartial mediation.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {grievanceCommittee.map((member, index) => (
+              <Card key={index} className="group hover:shadow-cultural transition-all duration-300 border-0 bg-card/50 backdrop-blur-sm">
+                <CardHeader className="text-center">
+                  <div className="relative mx-auto mb-6">
+                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary/40 transition-colors duration-300">
+                      {member.image ? (
+                        <img 
+                          src={member.image} 
+                          alt={`${member.name} - Grievance Committee Member`}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-muted/50 flex items-center justify-center">
+                          <div className="text-center">
+                            <div className="text-4xl text-muted-foreground/50 mb-2">👤</div>
+                            <div className="text-xs text-muted-foreground">Photo Coming Soon</div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <CardTitle className="text-xl md:text-2xl font-serif text-primary">
+                    {member.name}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground leading-relaxed text-center">
