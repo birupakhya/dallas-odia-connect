@@ -1,7 +1,7 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import boardMember1 from '@/assets/board-member-1.jpg';
+import amitabhHeadshot from '@/assets/amitabh-headshot.png';
 import boardMember2 from '@/assets/board-member-2.jpg';
 import boardMember3 from '@/assets/board-member-3.jpg';
 
@@ -10,7 +10,7 @@ const AboutUs = () => {
     {
       name: "Amitabh Mishra",
       title: "President",
-      image: boardMember1,
+      image: amitabhHeadshot,
       bio: "Amitabh grew up in Burla, and came to the US as a student at Texas A&M University. He worked at Intel, SAP, GE and Novartis prior to his current stint at Accenture Advisory Services. Before his current role at DOS, he served as Treasurer. His leadership philosophy is to provide a fun, safe and secure environment to the community while ensuring ethical behavior. He lives with his family in Murphy, TX."
     },
     {
