@@ -375,8 +375,8 @@ const GoogleDriveTest = () => {
       
       <GoogleDriveGallery
         folderId="1Xy7Lq_1wHBVlnxvzvQ1ER5yMahQaR0kZ"
-        title="Ganesh Puja Celebration 2025 - Live API"
-        subtitle="Real-time photo browsing from your Google Drive folder with professional gallery experience"
+        title="Ganesh Puja Celebration 2025"
+        subtitle="Relive the divine moments from our celebration of Lord Ganesh"
       />
       
       {/* Technical Information */}
