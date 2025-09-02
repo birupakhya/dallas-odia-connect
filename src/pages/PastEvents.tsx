@@ -15,7 +15,8 @@ import {
   ArrowRight,
   Star,
   Image,
-  Users
+  Users,
+  Play
 } from 'lucide-react';
 
 const PastEvents = () => {
@@ -86,10 +87,12 @@ const PastEvents = () => {
                   View Photo Gallery
                 </Button>
               </Link>
-              <Button variant="outline" size="lg">
-                <Image className="mr-2 h-5 w-5" />
-                Watch Videos
-              </Button>
+              <Link to="/events/gallery?type=videos">
+                <Button variant="outline" size="lg">
+                  <Play className="mr-2 h-5 w-5" />
+                  Watch Videos
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

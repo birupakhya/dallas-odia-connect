@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Image, X, ChevronLeft, ChevronRight, ExternalLink, Download, ZoomIn, Maximize2, Calendar, MapPin, Clock } from 'lucide-react';
+import { Image, X, ChevronLeft, ChevronRight, ExternalLink, Download, ZoomIn, Maximize2, Calendar, MapPin, Clock, Play, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import GoogleDriveService, { GoogleDrivePhoto } from '@/lib/google-drive';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import { useSearchParams } from 'react-router-dom';
 
 interface GoogleDriveGalleryProps {
   folderId?: string;
@@ -17,6 +18,7 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
   title = 'Ganesh Puja Celebration 2025',
   subtitle = 'Relive the divine moments from our celebration of Lord Ganesh'
 }) => {
+  const [searchParams] = useSearchParams();
   const [photos, setPhotos] = useState<GoogleDrivePhoto[]>([]);
   const [filteredPhotos, setFilteredPhotos] = useState<GoogleDrivePhoto[]>([]);
   const [loading, setLoading] = useState(true);
@@ -26,10 +28,38 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const driveService = GoogleDriveService.getInstance();
+  const contentType = searchParams.get('type') || 'all';
+
+  // Dynamic title and subtitle based on content type
+  const getTitle = () => {
+    if (contentType === 'videos') return 'Ganesh Puja Celebration 2025 - Videos';
+    if (contentType === 'photos') return 'Ganesh Puja Celebration 2025 - Photos';
+    return 'Ganesh Puja Celebration 2025';
+  };
+
+  const getSubtitle = () => {
+    if (contentType === 'videos') return 'Watch the video highlights from our celebration of Lord Ganesh';
+    if (contentType === 'photos') return 'Browse the photo memories from our celebration of Lord Ganesh';
+    return 'Relive the divine moments from our celebration of Lord Ganesh';
+  };
 
   useEffect(() => {
     loadPhotos();
   }, [folderId]);
+
+  useEffect(() => {
+    filterContent();
+  }, [photos, contentType]);
+
+  const filterContent = () => {
+    if (contentType === 'videos') {
+      setFilteredPhotos(photos.filter(photo => photo.isVideo));
+    } else if (contentType === 'photos') {
+      setFilteredPhotos(photos.filter(photo => !photo.isVideo));
+    } else {
+      setFilteredPhotos(photos);
+    }
+  };
 
   // Enhanced image loading with multiple fallback URLs
   const loadImageWithFallbacks = (photo: GoogleDrivePhoto, imgElement: HTMLImageElement) => {
@@ -58,6 +88,15 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
     setSelectedPhoto(photo);
     setLightboxOpen(true);
     document.body.style.overflow = 'hidden';
+  };
+
+  const openVideo = (photo: GoogleDrivePhoto) => {
+    if (photo.videoUrl) {
+      window.open(photo.videoUrl, '_blank');
+    } else {
+      // Fallback to Google Drive
+      window.open(photo.webViewLink, '_blank');
+    }
   };
 
   const closeLightbox = () => {
@@ -114,7 +153,6 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
       setError(null);
       const result = await driveService.getPhotosFromFolder(folderId, 1, 40); // Increased page size to 40
       setPhotos(result.photos);
-      setFilteredPhotos(result.photos);
       // setTotalPhotos(result.totalPhotos); // Removed as per new_code
       // setTotalPages(result.totalPages); // Removed as per new_code
     } catch (err) {
@@ -172,10 +210,10 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-serif font-bold text-primary mb-6">
-              {title}
+              {getTitle()}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              {subtitle}
+              {getSubtitle()}
             </p>
           </div>
 
@@ -215,9 +253,36 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
             </div>
           </div>
 
-          {/* Search and Controls */}
+          {/* Controls */}
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mb-8">
+              {/* Content Type Navigation */}
+              <div className="flex gap-2">
+                <Button
+                  variant={contentType === 'all' ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => window.location.href = '/events/gallery'}
+                >
+                  All Content
+                </Button>
+                <Button
+                  variant={contentType === 'photos' ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => window.location.href = '/events/gallery?type=photos'}
+                >
+                  <Image className="h-4 w-4 mr-2" />
+                  Photos Only
+                </Button>
+                <Button
+                  variant={contentType === 'videos' ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => window.location.href = '/events/gallery?type=videos'}
+                >
+                  <Video className="h-4 w-4 mr-2" />
+                  Videos Only
+                </Button>
+              </div>
+
               {/* View All in Drive Button */}
               <Button
                 variant="outline"
@@ -231,7 +296,9 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
 
               {/* Page Size Selector - Fixed at 40 */}
               <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">Showing 40 photos</span>
+                <span className="text-sm text-muted-foreground">
+                  Showing {filteredPhotos.length} {contentType === 'videos' ? 'videos' : contentType === 'photos' ? 'photos' : 'items'} of {photos.length} total
+                </span>
               </div>
             </div>
           </div>
@@ -250,12 +317,12 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
           ) : (
             <>
               {/* Masonry Layout (Default) */}
-              <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 space-y-4">
+              <div className="columns-2 sm:columns-4 md:columns-6 lg:columns-8 xl:columns-10 gap-4 space-y-4">
                 {filteredPhotos.map((photo) => (
                   <div
                     key={photo.id}
                     className="break-inside-avoid group cursor-pointer overflow-hidden rounded-xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10"
-                    onClick={() => openLightbox(photo)}
+                    onClick={() => photo.isVideo ? openVideo(photo) : openLightbox(photo)}
                   >
                     <div className="relative overflow-hidden">
                       <img
@@ -264,6 +331,16 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
                         className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                         onError={(e) => loadImageWithFallbacks(photo, e.target as HTMLImageElement)}
                       />
+                      
+                      {/* Video indicator overlay */}
+                      {photo.isVideo && (
+                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                          <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                            <Play className="h-8 w-8 text-black ml-1" />
+                          </div>
+                        </div>
+                      )}
+                      
                       {/* Overlay with actions */}
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                         <div className="flex gap-2">
@@ -284,10 +361,14 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
                             className="h-8 w-8 p-0 rounded-full bg-white/90 hover:bg-white text-black"
                             onClick={(e) => {
                               e.stopPropagation();
-                              openLightbox(photo);
+                              if (photo.isVideo) {
+                                openVideo(photo);
+                              } else {
+                                openLightbox(photo);
+                              }
                             }}
                           >
-                            <ZoomIn className="h-4 w-4" />
+                            {photo.isVideo ? <Play className="h-4 w-4" /> : <ZoomIn className="h-4 w-4" />}
                           </Button>
                         </div>
                       </div>

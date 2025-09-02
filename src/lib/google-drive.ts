@@ -25,6 +25,8 @@ export interface GoogleDrivePhoto {
   description: string;
   location: string;
   attendees: number;
+  isVideo: boolean;
+  videoUrl?: string;
 }
 
 export class GoogleDriveService {
@@ -65,9 +67,11 @@ export class GoogleDriveService {
         const files: GoogleDriveFile[] = filesData.files || [];
         totalFiles += files.length;
 
-        // Filter for image files and convert to photo format
-        const imageFiles = files.filter(file => file.mimeType.startsWith('image/'));
-        const pagePhotos: GoogleDrivePhoto[] = imageFiles.map((file, index) => ({
+        // Filter for image and video files and convert to photo format
+        const mediaFiles = files.filter(file => 
+          file.mimeType.startsWith('image/') || file.mimeType.startsWith('video/')
+        );
+        const pagePhotos: GoogleDrivePhoto[] = mediaFiles.map((file, index) => ({
           id: file.id,
           name: file.name,
           webViewLink: file.webViewLink,
@@ -78,7 +82,9 @@ export class GoogleDriveService {
           eventType: 'Religious Events',
           description: this.generateDescription(file.name, index + 1),
           location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
-          attendees: 0
+          attendees: 0,
+          isVideo: file.mimeType.startsWith('video/'),
+          videoUrl: file.mimeType.startsWith('video/') ? this.getVideoUrl(file.id) : undefined
         }));
 
         allPhotos = allPhotos.concat(pagePhotos);
@@ -123,6 +129,14 @@ export class GoogleDriveService {
     // This format bypasses the need for "public on the web" permissions
     const url = `https://drive.google.com/thumbnail?id=${fileId}&sz=w800`;
     console.log(`🔗 Generated working thumbnail URL for ${fileId}:`, url);
+    return url;
+  }
+
+  // Generate video URL for Google Drive videos
+  getVideoUrl(fileId: string): string {
+    // Use the video preview format that works with "anyone with the link" permissions
+    const url = `https://drive.google.com/file/d/${fileId}/preview`;
+    console.log(`🎥 Generated video URL for ${fileId}:`, url);
     return url;
   }
 
@@ -270,7 +284,9 @@ export class GoogleDriveService {
         eventType: 'Religious Events',
         description: 'Traditional Ganesh Puja rituals performed with devotion and traditional ceremonies',
         location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
-        attendees: 150
+        attendees: 150,
+        isVideo: false,
+        videoUrl: undefined
       },
       {
         id: 'sample-2',
@@ -283,7 +299,9 @@ export class GoogleDriveService {
         eventType: 'Religious Events',
         description: 'Community gathering and cultural celebration during the auspicious occasion',
         location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
-        attendees: 150
+        attendees: 150,
+        isVideo: false,
+        videoUrl: undefined
       }
     ];
   }
@@ -304,6 +322,12 @@ export class GoogleDriveService {
   async filterPhotosByCategory(category: string, photos: GoogleDrivePhoto[]): Promise<GoogleDrivePhoto[]> {
     if (category === 'all') return photos;
     return photos.filter(photo => photo.category === category);
+  }
+
+  // Filter photos by file type (image or video)
+  async filterPhotosByFileType(fileType: 'image' | 'video' | 'all', photos: GoogleDrivePhoto[]): Promise<GoogleDrivePhoto[]> {
+    if (fileType === 'all') return photos;
+    return photos.filter(photo => photo.isVideo === (fileType === 'video'));
   }
 
   // Format date for display
