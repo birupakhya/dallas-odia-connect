@@ -28,7 +28,7 @@ const GoogleDriveGallery = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPhotos, setTotalPhotos] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
-  const [pageSize] = useState(20);
+  const [pageSize, setPageSize] = useState(20);
 
   // Lightbox state
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -37,7 +37,7 @@ const GoogleDriveGallery = ({
 
   useEffect(() => {
     loadPhotos();
-  }, [folderId, currentPage]);
+  }, [folderId, currentPage, pageSize]);
 
   useEffect(() => {
     filterPhotos();
@@ -254,14 +254,16 @@ const GoogleDriveGallery = ({
               value={pageSize}
               onChange={(e) => {
                 const newSize = parseInt(e.target.value);
+                setPageSize(newSize); // Update pageSize state
                 setCurrentPage(1); // Reset to first page
-                // Note: pageSize is currently fixed, but we can make it dynamic later
               }}
               className="border rounded px-2 py-1 text-sm"
             >
               <option value={20}>20</option>
               <option value={40}>40</option>
               <option value={60}>60</option>
+              <option value={80}>80</option>
+              <option value={100}>100</option>
             </select>
             <span className="text-sm text-muted-foreground">per page</span>
           </div>
