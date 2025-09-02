@@ -34,7 +34,6 @@ const PastEvents = () => {
       category: 'Religious Events',
       photos: 200,
       videos: 4,
-      memories: 'The 2025 Ganesh Puja Celebration was a truly divine experience that brought our community together in spiritual harmony. The traditional rituals began at 10:30 AM, followed by a community lunch at 12:30 PM, and concluded with clean-up activities at 1:45 PM. The mesmerizing dance performances and authentic Odia cuisine created an atmosphere of pure devotion and cultural celebration. The event strengthened our community bonds and celebrated our rich heritage.',
       featured: true
     }
   ];
@@ -198,33 +197,6 @@ const PastEvents = () => {
               ))}
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Memories Section */}
-      <section className="py-16 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-12 text-center">
-            Community Memories
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {pastEvents.slice(0, 4).map((event) => (
-              <Card key={event.id} className="hover:shadow-lg transition-shadow duration-300">
-                <CardHeader>
-                  <CardTitle className="text-xl">{event.title}</CardTitle>
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground">{event.date}</span>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {event.memories}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
         </div>
       </section>
 
