@@ -9,17 +9,13 @@ import { Link } from 'react-router-dom';
 import { 
   Calendar, 
   MapPin, 
-  Users, 
   Clock, 
   Search,
   Filter,
   ArrowRight,
   Star,
-  Heart,
   Image,
-  Play,
-  Award,
-  Trophy
+  Users
 } from 'lucide-react';
 
 const PastEvents = () => {
@@ -36,11 +32,8 @@ const PastEvents = () => {
       location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
       description: 'A divine celebration of Lord Ganesh featuring traditional rituals, cultural performances, and community festivities. The event included morning puja, community lunch, and concluded with clean-up activities.',
       category: 'Religious Events',
-      attendees: 150,
-      photos: 60,
+      photos: 200,
       videos: 4,
-      highlights: ['Traditional Ganesh Puja rituals', 'Cultural dance performances', 'Traditional Odia cuisine', 'Community celebration'],
-      achievements: ['Spiritual Excellence Award', 'Community Unity Award'],
       memories: 'The 2025 Ganesh Puja Celebration was a truly divine experience that brought our community together in spiritual harmony. The traditional rituals began at 10:30 AM, followed by a community lunch at 12:30 PM, and concluded with clean-up activities at 1:45 PM. The mesmerizing dance performances and authentic Odia cuisine created an atmosphere of pure devotion and cultural celebration. The event strengthened our community bonds and celebrated our rich heritage.',
       featured: true
     }
@@ -95,7 +88,7 @@ const PastEvents = () => {
                 </Button>
               </Link>
               <Button variant="outline" size="lg">
-                <Play className="mr-2 h-5 w-5" />
+                <Image className="mr-2 h-5 w-5" />
                 Watch Videos
               </Button>
             </div>
@@ -184,10 +177,6 @@ const PastEvents = () => {
                         <MapPin className="h-4 w-4" />
                         <span className="text-sm">{event.location}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <Users className="h-4 w-4" />
-                        <span className="text-sm">{event.attendees} attendees</span>
-                      </div>
                     </div>
 
                     {/* Description */}
@@ -195,58 +184,14 @@ const PastEvents = () => {
                       {event.description}
                     </p>
 
-                    {/* Media Stats */}
-                    <div className="flex items-center gap-4 text-sm">
-                      <div className="flex items-center gap-1 text-muted-foreground">
-                        <Image className="h-4 w-4" />
-                        <span>{event.photos} photos</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-muted-foreground">
-                        <Play className="h-4 w-4" />
-                        <span>{event.videos} videos</span>
-                      </div>
-                    </div>
-
-                    {/* Highlights */}
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-medium text-foreground">Highlights:</h4>
-                      <div className="flex flex-wrap gap-1">
-                        {event.highlights.map((highlight, index) => (
-                          <Badge key={index} variant="secondary" className="text-xs">
-                            <Heart className="h-3 w-3 mr-1" />
-                            {highlight}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Achievements */}
-                    {event.achievements.length > 0 && (
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-medium text-foreground">Achievements:</h4>
-                        <div className="flex flex-wrap gap-1">
-                          {event.achievements.map((achievement, index) => (
-                            <Badge key={index} className="bg-yellow-100 text-yellow-800 border-yellow-200 text-xs">
-                              <Trophy className="h-3 w-3 mr-1" />
-                              {achievement}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
                     {/* Action Buttons */}
                     <div className="flex gap-2 pt-2 border-t border-border/50">
-                      <Link to="/events/gallery">
-                        <Button variant="outline" size="sm" className="flex-1">
+                      <Link to="/events/gallery" className="flex-1">
+                        <Button variant="default" size="sm" className="w-full">
                           <Image className="mr-2 h-4 w-4" />
-                          Photos
+                          View Photo Gallery
                         </Button>
                       </Link>
-                      <Button variant="outline" size="sm" className="flex-1">
-                        <Play className="mr-2 h-4 w-4" />
-                        Videos
-                      </Button>
                     </div>
                   </CardContent>
                 </Card>
