@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Grid3X3, List, Image, Calendar, MapPin, X, ChevronLeft, ChevronRight, ExternalLink, Download, ZoomIn, Maximize2 } from 'lucide-react';
+import { Search, Image, X, ChevronLeft, ChevronRight, ExternalLink, Download, ZoomIn, Maximize2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
@@ -21,7 +21,6 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [viewMode, setViewMode] = useState<'grid' | 'list' | 'masonry'>('masonry');
   const [selectedPhoto, setSelectedPhoto] = useState<GoogleDrivePhoto | null>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -230,34 +229,6 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
                 />
               </div>
 
-              {/* View Mode Toggle */}
-              <div className="flex items-center gap-2 bg-background/80 backdrop-blur-sm border border-border rounded-lg p-1">
-                <Button
-                  variant={viewMode === 'masonry' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => setViewMode('masonry')}
-                  className="h-8 px-3"
-                >
-                  <Grid3X3 className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => setViewMode('grid')}
-                  className="h-8 px-3"
-                >
-                  <Grid3X3 className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant={viewMode === 'list' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => setViewMode('list')}
-                  className="h-8 px-3"
-                >
-                  <List className="h-4 w-4" />
-                </Button>
-              </div>
-
               {/* Page Size Selector */}
               <div className="flex items-center gap-2">
                 <select
@@ -294,147 +265,51 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
           ) : (
             <>
               {/* Masonry Layout (Default) */}
-              {viewMode === 'masonry' && (
-                <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 space-y-4">
-                  {filteredPhotos.map((photo) => (
-                    <div
-                      key={photo.id}
-                      className="break-inside-avoid group cursor-pointer overflow-hidden rounded-xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10"
-                      onClick={() => openLightbox(photo)}
-                    >
-                      <div className="relative overflow-hidden">
-                        <img
-                          src={photo.thumbnailLink}
-                          alt=""
-                          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                          onError={(e) => loadImageWithFallbacks(photo, e.target as HTMLImageElement)}
-                        />
-                        {/* Overlay with actions */}
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                          <div className="flex gap-2">
-                            <Button
-                              size="sm"
-                              variant="secondary"
-                              className="h-8 w-8 p-0 rounded-full bg-white/90 hover:bg-white text-black"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                openInGoogleDrive(photo);
-                              }}
-                            >
-                              <ExternalLink className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant="secondary"
-                              className="h-8 w-8 p-0 rounded-full bg-white/90 hover:bg-white text-black"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                openLightbox(photo);
-                              }}
-                            >
-                              <ZoomIn className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* Grid View */}
-              {viewMode === 'grid' && (
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                  {filteredPhotos.map((photo) => (
-                    <div
-                      key={photo.id}
-                      className="group cursor-pointer overflow-hidden rounded-xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10"
-                      onClick={() => openLightbox(photo)}
-                    >
-                      <div className="aspect-square overflow-hidden">
-                        <img
-                          src={photo.thumbnailLink}
-                          alt=""
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          onError={(e) => loadImageWithFallbacks(photo, e.target as HTMLImageElement)}
-                        />
-                        {/* Overlay with actions */}
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                          <div className="flex gap-2">
-                            <Button
-                              size="sm"
-                              variant="secondary"
-                              className="h-8 w-8 p-0 rounded-full bg-white/90 hover:bg-white text-black"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                openInGoogleDrive(photo);
-                              }}
-                            >
-                              <ExternalLink className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant="secondary"
-                              className="h-8 w-8 p-0 rounded-full bg-white/90 hover:bg-white text-black"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                openLightbox(photo);
-                              }}
-                            >
-                              <ZoomIn className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* List View */}
-              {viewMode === 'list' && (
-                <div className="space-y-4">
-                  {filteredPhotos.map((photo) => (
-                    <div
-                      key={photo.id}
-                      className="group cursor-pointer overflow-hidden rounded-xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10"
-                      onClick={() => openLightbox(photo)}
-                    >
-                      <div className="flex items-center space-x-4 p-4">
-                        <div className="w-24 h-24 flex-shrink-0 overflow-hidden rounded-lg">
-                          <img
-                            src={photo.thumbnailLink}
-                            alt=""
-                            className="w-full h-full object-cover"
-                            onError={(e) => loadImageWithFallbacks(photo, e.target as HTMLImageElement)}
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-medium text-foreground group-hover:text-primary transition-colors">
-                            {photo.name}
-                          </h3>
-                          <p className="text-sm text-muted-foreground">
-                            {driveService.formatDate(photo.createdTime)}
-                          </p>
-                        </div>
-                        <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 space-y-4">
+                {filteredPhotos.map((photo) => (
+                  <div
+                    key={photo.id}
+                    className="break-inside-avoid group cursor-pointer overflow-hidden rounded-xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10"
+                    onClick={() => openLightbox(photo)}
+                  >
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={photo.thumbnailLink}
+                        alt=""
+                        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                        onError={(e) => loadImageWithFallbacks(photo, e.target as HTMLImageElement)}
+                      />
+                      {/* Overlay with actions */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <div className="flex gap-2">
                           <Button
                             size="sm"
-                            variant="outline"
+                            variant="secondary"
+                            className="h-8 w-8 p-0 rounded-full bg-white/90 hover:bg-white text-black"
                             onClick={(e) => {
                               e.stopPropagation();
                               openInGoogleDrive(photo);
                             }}
                           >
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                            Open in Drive
+                            <ExternalLink className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            className="h-8 w-8 p-0 rounded-full bg-white/90 hover:bg-white text-black"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              openLightbox(photo);
+                            }}
+                          >
+                            <ZoomIn className="h-4 w-4" />
                           </Button>
                         </div>
                       </div>
                     </div>
-                  ))}
-                </div>
-              )}
+                  </div>
+                ))}
+              </div>
             </>
           )}
 
