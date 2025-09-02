@@ -16,6 +16,8 @@ const GoogleDriveTest = () => {
   const [testingPublicWeb, setTestingPublicWeb] = useState(false);
   const [localhostTestResults, setLocalhostTestResults] = useState<any>(null);
   const [testingLocalhost, setTestingLocalhost] = useState(false);
+  const [accessStrategiesResults, setAccessStrategiesResults] = useState<any>(null);
+  const [testingStrategies, setTestingStrategies] = useState(false);
 
   const runApiTest = async () => {
     setTesting(true);
@@ -100,7 +102,7 @@ const GoogleDriveTest = () => {
       }
     } catch (error) {
       console.error('🌐 Public web test failed:', error);
-      setPublicWebTestResults({ accessible: false, error: error.message });
+      setPublicWebTestResults({ error: error.message });
     } finally {
       setTestingPublicWeb(false);
     }
@@ -118,6 +120,34 @@ const GoogleDriveTest = () => {
       setLocalhostTestResults({ isLocalhostIssue: false, message: error.message });
     } finally {
       setTestingLocalhost(false);
+    }
+  };
+
+  const testAccessStrategies = async () => {
+    setTestingStrategies(true);
+    try {
+      const service = GoogleDriveService.getInstance();
+      
+      // Get a sample photo to test
+      const photos = await service.getPhotosFromFolder('1Xy7Lq_1wHBVlnxvzvQ1ER5yMahQaR0kZ', 1, 1);
+      if (photos.photos.length > 0) {
+        const firstPhoto = photos.photos[0];
+        console.log('🎯 Testing access strategies with first photo:', firstPhoto);
+        
+        const strategiesResults = await service.testAccessStrategies(firstPhoto.id);
+        setAccessStrategiesResults({
+          photoName: firstPhoto.name,
+          photoId: firstPhoto.id,
+          strategies: strategiesResults
+        });
+      } else {
+        setAccessStrategiesResults({ error: 'No photos found to test' });
+      }
+    } catch (error) {
+      console.error('🎯 Access strategies test failed:', error);
+      setAccessStrategiesResults({ error: error.message });
+    } finally {
+      setTestingStrategies(false);
     }
   };
 
@@ -204,6 +234,15 @@ const GoogleDriveTest = () => {
                 >
                   {testingLocalhost ? 'Testing Localhost...' : '🏠 Test Localhost Restrictions'}
                 </Button>
+
+                <Button 
+                  onClick={testAccessStrategies} 
+                  disabled={testingStrategies}
+                  variant="outline"
+                  size="lg"
+                >
+                  {testingStrategies ? 'Testing Access Strategies...' : '🎯 Test Access Strategies'}
+                </Button>
               </div>
               
               {testResults && (
@@ -279,6 +318,42 @@ const GoogleDriveTest = () => {
                   }`}>
                     <div><strong>Localhost Issue:</strong> {localhostTestResults.isLocalhostIssue ? '❌ Yes' : '✅ No'}</div>
                     <div><strong>Message:</strong> {localhostTestResults.message}</div>
+                  </div>
+                </div>
+              )}
+
+              {accessStrategiesResults && (
+                <div className={`border rounded-lg p-4 max-w-2xl mx-auto text-left ${
+                  accessStrategiesResults.error 
+                    ? 'bg-red-50 border-red-200' 
+                    : 'bg-green-50 border-green-200'
+                }`}>
+                  <h3 className={`text-lg font-semibold mb-3 ${
+                    accessStrategiesResults.error ? 'text-red-800' : 'text-green-800'
+                  }`}>
+                    🎯 Access Strategies Test Results
+                  </h3>
+                  <div className={`text-sm space-y-2 ${
+                    accessStrategiesResults.error ? 'text-red-700' : 'text-green-700'
+                  }`}>
+                    <div><strong>Photo Tested:</strong> {accessStrategiesResults.photoName}</div>
+                    <div><strong>Photo ID:</strong> {accessStrategiesResults.photoId}</div>
+                    {accessStrategiesResults.error && (
+                      <div><strong>Error:</strong> {accessStrategiesResults.error}</div>
+                    )}
+                    {accessStrategiesResults.strategies && (
+                      <div>
+                        <h4 className="text-md font-semibold text-primary mb-2">Strategies:</h4>
+                        <ul className="text-sm text-muted-foreground space-y-1">
+                          {accessStrategiesResults.strategies.map((strategy: any, index: number) => (
+                            <li key={index}>
+                              <strong>{strategy.strategy}:</strong> {strategy.accessible ? '✅ Accessible' : '❌ Not Accessible'}
+                              {strategy.description && ` (${strategy.description})`}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}

@@ -138,8 +138,100 @@ export class GoogleDriveService {
       // Thumbnail format (smaller size, might work better)
       `https://drive.google.com/thumbnail?id=${fileId}&sz=w800`,
       // Direct download format (might work for some file types)
-      `https://drive.google.com/uc?export=download&id=${fileId}`
+      `https://drive.google.com/uc?export=download&id=${fileId}`,
+      // Alternative thumbnail sizes
+      `https://drive.google.com/thumbnail?id=${fileId}&sz=w400`,
+      `https://drive.google.com/thumbnail?id=${fileId}&sz=w600`,
+      // Try different export parameters
+      `https://drive.google.com/uc?export=view&id=${fileId}&sz=w800`,
+      `https://drive.google.com/uc?export=view&id=${fileId}&sz=w600`
     ];
+  }
+
+  // Test different access strategies
+  async testAccessStrategies(fileId: string): Promise<{ strategy: string, accessible: boolean, workingUrl?: string }[]> {
+    const strategies = [
+      {
+        name: 'Public Image URL',
+        url: `https://drive.google.com/uc?export=view&id=${fileId}`,
+        description: 'Standard public image format'
+      },
+      {
+        name: 'File Preview',
+        url: `https://drive.google.com/file/d/${fileId}/preview`,
+        description: 'Google Drive preview format'
+      },
+      {
+        name: 'Large Thumbnail',
+        url: `https://drive.google.com/thumbnail?id=${fileId}&sz=w800`,
+        description: 'Large thumbnail format'
+      },
+      {
+        name: 'Medium Thumbnail',
+        url: `https://drive.google.com/thumbnail?id=${fileId}&sz=w600`,
+        description: 'Medium thumbnail format'
+      },
+      {
+        name: 'Small Thumbnail',
+        url: `https://drive.google.com/thumbnail?id=${fileId}&sz=w400`,
+        description: 'Small thumbnail format'
+      }
+    ];
+
+    const results = [];
+    
+    for (const strategy of strategies) {
+      try {
+        console.log(`🧪 Testing strategy: ${strategy.name}`);
+        
+        const result = await this.testImageUrl(strategy.url);
+        results.push({
+          strategy: strategy.name,
+          accessible: result.accessible,
+          workingUrl: result.workingUrl,
+          description: strategy.description
+        });
+        
+        // If this strategy works, we can stop testing
+        if (result.accessible) {
+          console.log(`✅ Strategy ${strategy.name} works!`);
+          break;
+        }
+        
+      } catch (error) {
+        console.log(`❌ Strategy ${strategy.name} failed:`, error);
+        results.push({
+          strategy: strategy.name,
+          accessible: false,
+          description: strategy.description
+        });
+      }
+    }
+    
+    return results;
+  }
+
+  // Test a specific image URL
+  private async testImageUrl(url: string): Promise<{ accessible: boolean, workingUrl?: string }> {
+    return new Promise((resolve) => {
+      const img = new Image();
+      
+      img.onload = () => {
+        resolve({ accessible: true, workingUrl: url });
+      };
+      
+      img.onerror = () => {
+        resolve({ accessible: false });
+      };
+      
+      // Set a timeout to avoid hanging
+      setTimeout(() => {
+        resolve({ accessible: false });
+      }, 3000);
+      
+      // Try to load the image
+      img.src = url;
+    });
   }
 
   // Format file size
