@@ -13,8 +13,8 @@ interface GoogleDriveGalleryProps {
 
 const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
   folderId = '1Xy7Lq_1wHBVlnxvzvQ1ER5yMahQaR0kZ',
-  title = 'Photo Gallery',
-  subtitle = 'Browse and explore our collection of memories'
+  title = 'Ganesh Puja Celebration 2025',
+  subtitle = 'Relive the divine moments from our celebration of Lord Ganesh'
 }) => {
   const [photos, setPhotos] = useState<GoogleDrivePhoto[]>([]);
   const [filteredPhotos, setFilteredPhotos] = useState<GoogleDrivePhoto[]>([]);

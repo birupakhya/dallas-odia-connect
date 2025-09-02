@@ -13,6 +13,7 @@ import UpcomingEvents from "./pages/UpcomingEvents";
 import PastEvents from "./pages/PastEvents";
 import EventGallery from "./pages/EventGallery";
 import GoogleDriveTest from "./pages/GoogleDriveTest";
+import GoogleDriveGallery from "./components/GoogleDriveGallery";
 import OAuthCallback from "./pages/OAuthCallback";
 import ContactUs from "./pages/ContactUs";
 import NotFound from "./pages/NotFound";
@@ -39,7 +40,7 @@ const App = () => (
           <Route path="/events/current" element={<CurrentEvent />} />
           <Route path="/events/upcoming" element={<UpcomingEvents />} />
           <Route path="/events/past" element={<PastEvents />} />
-          <Route path="/events/gallery" element={<EventGallery />} />
+          <Route path="/events/gallery" element={<GoogleDriveGallery />} />
           <Route path="/google-drive-test" element={<GoogleDriveTest />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/auth/callback" element={<OAuthCallback />} />

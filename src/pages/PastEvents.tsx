@@ -88,7 +88,7 @@ const PastEvents = () => {
               Each event represents the strength and unity of our DOS family.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/event-gallery">
+              <Link to="/events/gallery">
                 <Button variant="hero" size="lg">
                   <Image className="mr-2 h-5 w-5" />
                   View Photo Gallery
@@ -237,7 +237,7 @@ const PastEvents = () => {
 
                     {/* Action Buttons */}
                     <div className="flex gap-2 pt-2 border-t border-border/50">
-                      <Link to="/event-gallery">
+                      <Link to="/events/gallery">
                         <Button variant="outline" size="sm" className="flex-1">
                           <Image className="mr-2 h-4 w-4" />
                           Photos
