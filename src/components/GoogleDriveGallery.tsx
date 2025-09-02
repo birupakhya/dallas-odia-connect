@@ -229,6 +229,17 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
                 />
               </div>
 
+              {/* View All in Drive Button */}
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => window.open(`https://drive.google.com/drive/folders/${folderId}`, '_blank')}
+                className="bg-background/80 backdrop-blur-sm border-border hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+              >
+                <ExternalLink className="h-5 w-5 mr-2" />
+                View All in Drive
+              </Button>
+
               {/* Page Size Selector */}
               <div className="flex items-center gap-2">
                 <select
@@ -364,6 +375,57 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
               </Button>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Access Options Section */}
+      <section className="py-16 bg-muted/30">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-serif font-bold text-primary mb-8 text-center">
+            How to Access Your Photos
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-background p-6 rounded-xl border border-border text-center">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <ZoomIn className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Browse in Gallery</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Use the masonry layout above to browse through photos with search and pagination
+              </p>
+              <Button variant="outline" size="sm" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                Back to Gallery
+              </Button>
+            </div>
+
+            <div className="bg-background p-6 rounded-xl border border-border text-center">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Maximize2 className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">View Full Scale</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Click any photo to open in lightbox, then use "View Full Scale" for original resolution
+              </p>
+              <span className="text-xs text-muted-foreground">Click photos above to try</span>
+            </div>
+
+            <div className="bg-background p-6 rounded-xl border border-border text-center">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <ExternalLink className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Browse All in Drive</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Access the complete folder directly in Google Drive for full browsing experience
+              </p>
+              <Button 
+                variant="default" 
+                size="sm" 
+                onClick={() => window.open(`https://drive.google.com/drive/folders/${folderId}`, '_blank')}
+              >
+                Open in Drive
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
 
