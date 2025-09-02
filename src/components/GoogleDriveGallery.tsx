@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Grid3X3, List, Image, Calendar, MapPin } from 'lucide-react';
+import { Search, Grid3X3, List, Image, Calendar, MapPin, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
@@ -29,6 +29,9 @@ const GoogleDriveGallery = ({
   const [totalPhotos, setTotalPhotos] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [pageSize] = useState(20);
+
+  // Lightbox state
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const driveService = GoogleDriveService.getInstance();
 
@@ -80,13 +83,54 @@ const GoogleDriveGallery = ({
     setSearchQuery(query);
   };
 
+  // Lightbox navigation functions
   const openLightbox = (photo: GoogleDrivePhoto) => {
     setSelectedPhoto(photo);
+    setLightboxOpen(true);
   };
 
   const closeLightbox = () => {
+    setLightboxOpen(false);
     setSelectedPhoto(null);
   };
+
+  const goToNext = () => {
+    if (selectedPhoto) {
+      const currentIndex = filteredPhotos.findIndex(p => p.id === selectedPhoto.id);
+      const nextIndex = (currentIndex + 1) % filteredPhotos.length;
+      setSelectedPhoto(filteredPhotos[nextIndex]);
+    }
+  };
+
+  const goToPrevious = () => {
+    if (selectedPhoto) {
+      const currentIndex = filteredPhotos.findIndex(p => p.id === selectedPhoto.id);
+      const prevIndex = currentIndex === 0 ? filteredPhotos.length - 1 : currentIndex - 1;
+      setSelectedPhoto(filteredPhotos[prevIndex]);
+    }
+  };
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!lightboxOpen) return;
+      
+      switch (e.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowRight':
+          goToNext();
+          break;
+        case 'ArrowLeft':
+          goToPrevious();
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxOpen, selectedPhoto, filteredPhotos]);
 
   const goToPage = (page: number) => {
     setCurrentPage(page);
@@ -260,68 +304,53 @@ const GoogleDriveGallery = ({
             </p>
           </div>
         ) : (
-          <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6' : 'space-y-4'}>
-            {filteredPhotos.map((photo) => (
-              <Card
-                key={photo.id}
-                className={`group cursor-pointer transition-all duration-300 hover:shadow-lg ${
-                  viewMode === 'list' ? 'flex flex-row' : ''
-                }`}
-                onClick={() => openLightbox(photo)}
-              >
-                {viewMode === 'grid' ? (
-                  <>
-                    <div className="aspect-square overflow-hidden rounded-t-lg">
+          <>
+            {/* Grid View */}
+            {viewMode === 'grid' && (
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                {filteredPhotos.map((photo) => (
+                  <div
+                    key={photo.id}
+                    className="group cursor-pointer overflow-hidden rounded-lg border border-border hover:border-primary/50 transition-all duration-200 hover:shadow-lg"
+                    onClick={() => openLightbox(photo)}
+                  >
+                    <div className="aspect-square overflow-hidden">
                       <img
                         src={photo.thumbnailLink}
-                        alt={photo.description}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          loadImageWithFallbacks(photo, target);
-                        }}
+                        alt=""
+                        className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
+                        onError={(e) => loadImageWithFallbacks(photo, e.target as HTMLImageElement)}
                       />
                     </div>
-                    <CardContent className="p-4">
-                      <h3 className="font-semibold text-lg mb-2 line-clamp-2">{photo.name}</h3>
-                      <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{photo.description}</p>
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <Calendar className="h-3 w-3" />
-                        <span>{driveService.formatDate(photo.createdTime)}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* List View */}
+            {viewMode === 'list' && (
+              <div className="space-y-4">
+                {filteredPhotos.map((photo) => (
+                  <div
+                    key={photo.id}
+                    className="group cursor-pointer overflow-hidden rounded-lg border border-border hover:border-primary/50 transition-all duration-200 hover:shadow-lg"
+                    onClick={() => openLightbox(photo)}
+                  >
+                    <div className="flex items-center space-x-4 p-4">
+                      <div className="w-20 h-20 flex-shrink-0 overflow-hidden rounded-lg">
+                        <img
+                          src={photo.thumbnailLink}
+                          alt=""
+                          className="w-full h-full object-cover"
+                          onError={(e) => loadImageWithFallbacks(photo, e.target as HTMLImageElement)}
+                        />
                       </div>
-                    </CardContent>
-                  </>
-                ) : (
-                  <>
-                    <div className="w-24 h-24 overflow-hidden rounded-l-lg flex-shrink-0">
-                      <img
-                        src={photo.thumbnailLink}
-                        alt={photo.description}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          loadImageWithFallbacks(photo, target);
-                        }}
-                      />
                     </div>
-                    <CardContent className="p-4 flex-1">
-                      <div className="flex justify-between items-start mb-2">
-                        <h3 className="font-semibold text-lg">{photo.name}</h3>
-                        <span className="text-xs text-muted-foreground">{driveService.formatDate(photo.createdTime)}</span>
-                      </div>
-                      <p className="text-muted-foreground text-sm mb-3">{photo.description}</p>
-                      <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <MapPin className="h-3 w-3" />
-                          <span>{photo.location}</span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </>
-                )}
-              </Card>
-            ))}
-          </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
         )}
 
         {/* Pagination */}
@@ -361,29 +390,43 @@ const GoogleDriveGallery = ({
         )}
 
         {/* Lightbox */}
-        {selectedPhoto && (
+        {lightboxOpen && selectedPhoto && (
           <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
             <div className="relative max-w-4xl max-h-full">
-              <Button
-                variant="ghost"
-                size="sm"
+              {/* Close button */}
+              <button
                 onClick={closeLightbox}
-                className="absolute top-4 right-4 z-10 bg-black bg-opacity-50 text-white hover:bg-black hover:bg-opacity-70"
+                className="absolute top-4 right-4 text-white hover:text-gray-300 z-10 bg-black bg-opacity-50 rounded-full p-2"
               >
-                ×
-              </Button>
+                <X className="w-6 h-6" />
+              </button>
+
+              {/* Navigation arrows */}
+              <button
+                onClick={goToPrevious}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10 bg-black bg-opacity-50 rounded-full p-3"
+              >
+                <ChevronLeft className="w-8 h-8" />
+              </button>
+
+              <button
+                onClick={goToNext}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10 bg-black bg-opacity-50 rounded-full p-3"
+              >
+                <ChevronRight className="w-8 h-8" />
+              </button>
+
+              {/* Image */}
               <img
                 src={selectedPhoto.thumbnailLink}
-                alt={selectedPhoto.description}
-                className="max-w-full max-h-full object-contain"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  loadImageWithFallbacks(selectedPhoto, target);
-                }}
+                alt=""
+                className="max-w-full max-h-full object-contain rounded-lg"
+                onError={(e) => loadImageWithFallbacks(selectedPhoto, e.target as HTMLImageElement)}
               />
-              <div className="absolute bottom-4 left-4 right-4 bg-black bg-opacity-50 text-white p-4 rounded">
-                <h3 className="font-semibold text-lg mb-2">{selectedPhoto.name}</h3>
-                <p className="text-sm">{selectedPhoto.description}</p>
+
+              {/* Photo counter */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black bg-opacity-50 rounded-full px-4 py-2 text-sm">
+                {filteredPhotos.findIndex(p => p.id === selectedPhoto.id) + 1} of {filteredPhotos.length}
               </div>
             </div>
           </div>
