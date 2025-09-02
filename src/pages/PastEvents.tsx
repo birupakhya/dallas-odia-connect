@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { Link } from 'react-router-dom';
 import { 
   Calendar, 
   MapPin, 
@@ -29,103 +30,23 @@ const PastEvents = () => {
   const pastEvents = [
     {
       id: '1',
-      title: 'Ratha Yatra 2024',
-      date: 'July 20, 2024',
-      time: '4:00 PM - 8:00 PM',
-      location: 'Plano Community Center',
-      description: 'Successful Ratha Yatra celebration with over 200 community members participating in traditional ceremonies and cultural activities.',
+      title: 'Ganesh Puja Celebration 2025',
+      date: 'August 30, 2025',
+      time: '10:30 AM - 1:45 PM',
+      location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
+      description: 'A divine celebration of Lord Ganesh featuring traditional rituals, cultural performances, and community festivities. The event included morning puja, community lunch, and concluded with clean-up activities.',
       category: 'Religious Events',
-      attendees: 200,
-      photos: 45,
-      videos: 3,
-      highlights: ['Traditional ceremony', 'Community participation', 'Cultural celebration'],
-      achievements: ['Best Community Event 2024', 'Cultural Excellence Award'],
-      memories: 'The 2024 Ratha Yatra was a spectacular celebration that brought together our entire community. The traditional chariot procession, devotional songs, and cultural performances created an unforgettable experience for all attendees.',
-      featured: true
-    },
-    {
-      id: '2',
-      title: 'Annual Picnic 2024',
-      date: 'May 25, 2024',
-      time: '11:00 AM - 4:00 PM',
-      location: 'White Rock Lake',
-      description: 'Wonderful family picnic with traditional Odia food, games, and community bonding activities.',
-      category: 'Social Events',
-      attendees: 120,
-      photos: 38,
-      videos: 2,
-      highlights: ['Family activities', 'Traditional food', 'Outdoor games'],
-      achievements: ['Community Bonding Award'],
-      memories: 'Our annual picnic at White Rock Lake was a perfect day filled with laughter, traditional Odia cuisine, and community bonding. Children enjoyed various games while adults shared stories and strengthened friendships.',
-      featured: false
-    },
-    {
-      id: '3',
-      title: 'Kumar Purnima 2024',
-      date: 'October 15, 2024',
-      time: '6:00 PM - 10:00 PM',
-      location: 'Dallas Convention Center',
-      description: 'Magical Kumar Purnima celebration featuring traditional rituals, classical dance performances, and community festivities.',
-      category: 'Cultural Events',
-      attendees: 180,
-      photos: 52,
+      attendees: 150,
+      photos: 60,
       videos: 4,
-      highlights: ['Traditional rituals', 'Cultural performances', 'Odia cuisine'],
-      achievements: ['Cultural Excellence Award', 'Best Traditional Event'],
-      memories: 'The 2024 Kumar Purnima celebration was a magical evening that perfectly captured the essence of Odia culture. The traditional rituals, mesmerizing dance performances, and authentic cuisine created an atmosphere of pure cultural celebration.',
+      highlights: ['Traditional Ganesh Puja rituals', 'Cultural dance performances', 'Traditional Odia cuisine', 'Community celebration'],
+      achievements: ['Spiritual Excellence Award', 'Community Unity Award'],
+      memories: 'The 2025 Ganesh Puja Celebration was a truly divine experience that brought our community together in spiritual harmony. The traditional rituals began at 10:30 AM, followed by a community lunch at 12:30 PM, and concluded with clean-up activities at 1:45 PM. The mesmerizing dance performances and authentic Odia cuisine created an atmosphere of pure devotion and cultural celebration. The event strengthened our community bonds and celebrated our rich heritage.',
       featured: true
-    },
-    {
-      id: '4',
-      title: 'Odia Language Workshop 2024',
-      date: 'September 2024',
-      time: 'Weekly Sessions',
-      location: 'Irving Library',
-      description: 'Successful language workshop series helping children and adults learn Odia language and cultural heritage.',
-      category: 'Educational',
-      attendees: 45,
-      photos: 25,
-      videos: 1,
-      highlights: ['Language learning', 'Cultural education', 'Interactive sessions'],
-      achievements: ['Educational Excellence Award'],
-      memories: 'Our Odia language workshop series was a tremendous success, with participants of all ages learning to read, write, and speak Odia. The interactive sessions and cultural activities made learning both fun and meaningful.',
-      featured: false
-    },
-    {
-      id: '5',
-      title: 'Charity Fundraiser 2024',
-      date: 'December 15, 2024',
-      time: '7:00 PM - 11:00 PM',
-      location: 'Plano Event Center',
-      description: 'Successful charity fundraiser supporting community development projects and charitable causes.',
-      category: 'Charity',
-      attendees: 100,
-      photos: 30,
-      videos: 2,
-      highlights: ['Charitable giving', 'Community support', 'Networking'],
-      achievements: ['Charity Excellence Award', 'Community Impact Award'],
-      memories: 'The 2024 charity fundraiser was a heartwarming event that demonstrated our community\'s commitment to giving back. The generous donations and community support will help numerous families and causes.',
-      featured: true
-    },
-    {
-      id: '6',
-      title: 'Odissi Dance Performance 2024',
-      date: 'November 20, 2024',
-      time: '7:00 PM - 9:00 PM',
-      location: 'Dallas Arts District',
-      description: 'Stunning Odissi dance performance showcasing classical Indian dance forms and cultural heritage.',
-      category: 'Cultural Events',
-      attendees: 80,
-      photos: 28,
-      videos: 3,
-      highlights: ['Dance performance', 'Cultural showcase', 'Artistic excellence'],
-      achievements: ['Artistic Excellence Award'],
-      memories: 'The Odissi dance performance was a mesmerizing showcase of classical Indian dance. The graceful movements, traditional music, and cultural storytelling captivated the audience and celebrated our rich heritage.',
-      featured: false
     }
   ];
 
-  const years = ['all', '2024', '2023', '2022'];
+  const years = ['all', '2025'];
 
   const filteredEvents = pastEvents.filter(event => {
     const matchesSearch = event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -167,10 +88,12 @@ const PastEvents = () => {
               Each event represents the strength and unity of our DOS family.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="hero" size="lg">
-                <Image className="mr-2 h-5 w-5" />
-                View Photo Gallery
-              </Button>
+              <Link to="/event-gallery">
+                <Button variant="hero" size="lg">
+                  <Image className="mr-2 h-5 w-5" />
+                  View Photo Gallery
+                </Button>
+              </Link>
               <Button variant="outline" size="lg">
                 <Play className="mr-2 h-5 w-5" />
                 Watch Videos
@@ -314,10 +237,12 @@ const PastEvents = () => {
 
                     {/* Action Buttons */}
                     <div className="flex gap-2 pt-2 border-t border-border/50">
-                      <Button variant="outline" size="sm" className="flex-1">
-                        <Image className="mr-2 h-4 w-4" />
-                        Photos
-                      </Button>
+                      <Link to="/event-gallery">
+                        <Button variant="outline" size="sm" className="flex-1">
+                          <Image className="mr-2 h-4 w-4" />
+                          Photos
+                        </Button>
+                      </Link>
                       <Button variant="outline" size="sm" className="flex-1">
                         <Play className="mr-2 h-4 w-4" />
                         Videos

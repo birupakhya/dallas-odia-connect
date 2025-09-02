@@ -15,7 +15,7 @@ const HeroSection = () => {
           loop: true,
         }}
         plugins={[
-          Autoplay({ delay: 5000, stopOnInteraction: false })
+          Autoplay({ delay: 15000, stopOnInteraction: false })
         ]}
         className="w-full"
       >
@@ -102,6 +102,102 @@ const HeroSection = () => {
                       tradition, to build a reliable support system for the members in the community and 
                       to provide an experience of 'Home away from Home' to its members."
                     </blockquote>
+                  </div>
+                </div>
+              </div>
+
+              {/* Decorative Elements */}
+              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent"></div>
+            </div>
+          </CarouselItem>
+
+          {/* Ganesh Puja Celebration 2025 Slide */}
+          <CarouselItem>
+            <div className="relative bg-gradient-warm">
+              {/* Background Image */}
+              <div className="absolute inset-0">
+                <img
+                  src={heroImage}
+                  alt="Traditional Odisha temple with golden sunset"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/60"></div>
+              </div>
+
+              {/* Content */}
+              <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+                <div className="grid md:grid-cols-2 gap-12 items-center">
+                  {/* Text Content */}
+                  <div className="text-white space-y-8">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 text-yellow-300">
+                        <Star className="h-6 w-6" />
+                        <span className="text-lg font-medium">Recent Event</span>
+                      </div>
+                      <h1 className="text-4xl md:text-6xl font-serif font-bold leading-tight">
+                        Ganesh Puja Celebration 2025
+                      </h1>
+                      <p className="text-xl md:text-2xl font-light opacity-90">
+                        A Divine Celebration of Lord Ganesh
+                      </p>
+                      <p className="text-lg opacity-80 max-w-lg">
+                        Join us in celebrating the divine presence of Lord Ganesh through 
+                        traditional rituals, cultural performances, and community festivities. 
+                        Experience the spiritual essence of this sacred celebration.
+                      </p>
+                    </div>
+
+                    {/* Event Details */}
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 space-y-4">
+                      <div className="flex items-center gap-3">
+                        <Calendar className="h-5 w-5 text-yellow-300" />
+                        <span className="text-lg font-medium">Saturday, August 30th, 2025</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Clock className="h-5 w-5 text-yellow-300" />
+                        <span>10:30 AM - 1:45 PM</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <MapPin className="h-5 w-5 text-yellow-300" />
+                        <span>Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023</span>
+                      </div>
+                    </div>
+
+                    {/* CTA Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Link to="/event-gallery">
+                        <Button variant="hero" size="lg" className="group">
+                          View Photo Gallery
+                          <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </Link>
+                      <Button variant="warm" size="lg">
+                        Learn More
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Event Highlights Card */}
+                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-elevated border border-white/20">
+                    <h3 className="text-2xl font-serif font-semibold text-white mb-6">Event Highlights</h3>
+                    <div className="space-y-4 text-white/90">
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
+                        <span>Traditional Ganesh Puja rituals</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
+                        <span>Cultural dance performances</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
+                        <span>Traditional Odia cuisine</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
+                        <span>Community celebration and bonding</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

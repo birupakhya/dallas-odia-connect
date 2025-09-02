@@ -30,6 +30,105 @@ const EventGallery = () => {
 
   // Sample event photos - replace with actual DOS event photos
   const eventPhotos = [
+    // Ganesh Puja Celebration 2025 - IMPORTANT: Replace with actual individual photo file IDs
+    // To get file IDs: Right-click each photo in Google Drive → Share → Get link → Copy the FILE_ID part
+    {
+      id: 'gp1',
+      src: 'https://drive.google.com/uc?export=view&id=FILE_ID_HERE_1', // Replace FILE_ID_HERE_1 with actual file ID
+      alt: 'Ganesh Puja 2025 - Traditional Rituals',
+      title: 'Traditional Ganesh Puja Rituals',
+      description: 'Sacred Ganesh Puja rituals performed with devotion and traditional ceremonies',
+      date: 'August 30, 2025',
+      location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
+      attendees: 150,
+      category: 'Ganesh Puja 2025',
+      eventType: 'Religious Events'
+    },
+    {
+      id: 'gp2',
+      src: 'https://drive.google.com/uc?export=view&id=FILE_ID_HERE_2', // Replace FILE_ID_HERE_2 with actual file ID
+      alt: 'Ganesh Puja 2025 - Community Gathering',
+      title: 'Community Celebration',
+      description: 'DOS community members celebrating Ganesh Puja together in spiritual harmony',
+      date: 'August 30, 2025',
+      location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
+      attendees: 150,
+      category: 'Ganesh Puja 2025',
+      eventType: 'Religious Events'
+    },
+    {
+      id: 'gp3',
+      src: 'https://drive.google.com/uc?export=view&id=FILE_ID_HERE_3', // Replace FILE_ID_HERE_3 with actual file ID
+      alt: 'Ganesh Puja 2025 - Cultural Performances',
+      title: 'Cultural Dance Performances',
+      description: 'Beautiful cultural dance performances showcasing Odia traditions',
+      date: 'August 30, 2025',
+      location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
+      attendees: 150,
+      category: 'Ganesh Puja 2025',
+      eventType: 'Religious Events'
+    },
+    {
+      id: 'gp4',
+      src: 'https://drive.google.com/uc?export=view&id=FILE_ID_HERE_4', // Replace FILE_ID_HERE_4 with actual file ID
+      alt: 'Ganesh Puja 2025 - Traditional Cuisine',
+      title: 'Traditional Odia Cuisine',
+      description: 'Delicious traditional Odia food served during the celebration',
+      date: 'August 30, 2025',
+      location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
+      attendees: 150,
+      category: 'Ganesh Puja 2025',
+      eventType: 'Religious Events'
+    },
+    {
+      id: 'gp5',
+      src: 'https://drive.google.com/uc?export=view&id=FILE_ID_HERE_5', // Replace FILE_ID_HERE_5 with actual file ID
+      alt: 'Ganesh Puja 2025 - Community Bonding',
+      title: 'Community Bonding',
+      description: 'Community members strengthening bonds through shared spiritual experience',
+      date: 'August 30, 2025',
+      location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
+      attendees: 150,
+      category: 'Ganesh Puja 2025',
+      eventType: 'Religious Events'
+    },
+    {
+      id: 'gp6',
+      src: 'https://drive.google.com/uc?export=view&id=FILE_ID_HERE_6', // Replace FILE_ID_HERE_6 with actual file ID
+      alt: 'Ganesh Puja 2025 - Temple Decorations',
+      title: 'Beautiful Temple Decorations',
+      description: 'Exquisite decorations and traditional setup for the Ganesh Puja celebration',
+      date: 'August 30, 2025',
+      location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
+      attendees: 150,
+      category: 'Ganesh Puja 2025',
+      eventType: 'Religious Events'
+    },
+    {
+      id: 'gp7',
+      src: 'https://drive.google.com/uc?export=view&id=FILE_ID_HERE_7', // Replace FILE_ID_HERE_7 with actual file ID
+      alt: 'Ganesh Puja 2025 - Devotional Atmosphere',
+      title: 'Spiritual Devotion',
+      description: 'Community members immersed in spiritual devotion during the puja',
+      date: 'August 30, 2025',
+      location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
+      attendees: 150,
+      category: 'Ganesh Puja 2025',
+      eventType: 'Religious Events'
+    },
+    {
+      id: 'gp8',
+      src: 'https://drive.google.com/uc?export=view&id=FILE_ID_HERE_8', // Replace FILE_ID_HERE_8 with actual file ID
+      alt: 'Ganesh Puja 2025 - Community Feast',
+      title: 'Community Feast',
+      description: 'Traditional community meal bringing everyone together in celebration',
+      date: 'August 30, 2025',
+      location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
+      attendees: 150,
+      category: 'Ganesh Puja 2025',
+      eventType: 'Religious Events'
+    },
+
     // Kumar Purnima 2024
     {
       id: 'kp1',

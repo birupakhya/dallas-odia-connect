@@ -12,6 +12,8 @@ import CurrentEvent from "./pages/CurrentEvent";
 import UpcomingEvents from "./pages/UpcomingEvents";
 import PastEvents from "./pages/PastEvents";
 import EventGallery from "./pages/EventGallery";
+import GoogleDriveTest from "./pages/GoogleDriveTest";
+import OAuthCallback from "./pages/OAuthCallback";
 import ContactUs from "./pages/ContactUs";
 import NotFound from "./pages/NotFound";
 import FeedbackButton from "./components/FeedbackButton";
@@ -38,7 +40,9 @@ const App = () => (
           <Route path="/events/upcoming" element={<UpcomingEvents />} />
           <Route path="/events/past" element={<PastEvents />} />
           <Route path="/events/gallery" element={<EventGallery />} />
+          <Route path="/google-drive-test" element={<GoogleDriveTest />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/auth/callback" element={<OAuthCallback />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

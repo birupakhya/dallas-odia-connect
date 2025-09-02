@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive File ID Extractor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1a73e8;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .step {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #1a73e8;
+        }
+        .step h3 {
+            color: #1a73e8;
+            margin-top: 0;
+        }
+        .input-group {
+            margin: 20px 0;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus {
+            border-color: #1a73e8;
+            outline: none;
+        }
+        button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #1557b0;
+        }
+        .result {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #4caf50;
+        }
+        .copy-btn {
+            background: #4caf50;
+            font-size: 12px;
+            padding: 6px 12px;
+        }
+        .copy-btn:hover {
+            background: #45a049;
+        }
+        .example {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .code {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            border: 1px solid #ddd;
+        }
+        .final-url {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Google Drive File ID Extractor</h1>
+        <p style="text-align: center; color: #666;">Extract file IDs from Google Drive share links for your DOS website</p>
+
+        <div class="step">
+            <h3>📋 Step 1: Get Share Links from Google Drive</h3>
+            <ol>
+                <li>Go to your <a href="https://drive.google.com/drive/folders/1Xy7Lq_1wHBVlnxvzvQ1ER5yMahQaR0kZ?usp=sharing" target="_blank">Ganesh Puja photos folder</a></li>
+                <li>Right-click on a photo → <strong>Share</strong> → <strong>Get link</strong></li>
+                <li>Ensure it shows "Anyone with the link can view"</li>
+                <li>Copy the link</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3>🔍 Step 2: Extract File ID</h3>
+            <p>Paste your Google Drive share link below:</p>
+            <div class="input-group">
+                <input type="text" id="shareLink" placeholder="https://drive.google.com/file/d/FILE_ID/view?usp=sharing">
+            </div>
+            <button onclick="extractFileId()">Extract File ID</button>
+            <div id="fileIdResult" class="result" style="display: none;">
+                <strong>File ID:</strong> <span id="fileId"></span>
+                <button class="copy-btn" onclick="copyToClipboard('fileId')">Copy</button>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>🔗 Step 3: Generate Direct Image URL</h3>
+            <button onclick="generateDirectUrl()">Generate Direct URL</button>
+            <div id="directUrlResult" class="final-url" style="display: none;">
+                <strong>Direct Image URL:</strong><br>
+                <div class="code" id="directUrl"></div>
+                <button class="copy-btn" onclick="copyToClipboard('directUrl')">Copy URL</button>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>💡 Step 4: Use in Your Website</h3>
+            <p>Replace the placeholder in your EventGallery.tsx:</p>
+            <div class="example">
+                <strong>Before:</strong><br>
+                <div class="code">src: 'https://drive.google.com/uc?export=view&id=FILE_ID_HERE_1'</div>
+                <br>
+                <strong>After:</strong><br>
+                <div class="code">src: 'https://drive.google.com/uc?export=view&id=YOUR_ACTUAL_FILE_ID'</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>⚡ Quick Batch Processing</h3>
+            <p>Process multiple links at once:</p>
+            <div class="input-group">
+                <textarea id="batchLinks" rows="5" placeholder="Paste multiple Google Drive links here, one per line"></textarea>
+            </div>
+            <button onclick="processBatch()">Process All Links</button>
+            <div id="batchResult" class="result" style="display: none;">
+                <h4>Extracted File IDs:</h4>
+                <div id="batchFileIds"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function extractFileId() {
+            const shareLink = document.getElementById('shareLink').value;
+            const fileIdMatch = shareLink.match(/\/d\/([a-zA-Z0-9_-]+)\//);
+            
+            if (fileIdMatch) {
+                const fileId = fileIdMatch[1];
+                document.getElementById('fileId').textContent = fileId;
+                document.getElementById('fileIdResult').style.display = 'block';
+                
+                // Store file ID for direct URL generation
+                window.currentFileId = fileId;
+            } else {
+                alert('Invalid Google Drive share link. Please check the format.');
+            }
+        }
+
+        function generateDirectUrl() {
+            if (window.currentFileId) {
+                const directUrl = `https://drive.google.com/uc?export=view&id=${window.currentFileId}`;
+                document.getElementById('directUrl').textContent = directUrl;
+                document.getElementById('directUrlResult').style.display = 'block';
+            } else {
+                alert('Please extract a file ID first.');
+            }
+        }
+
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Copied to clipboard!');
+            });
+        }
+
+        function processBatch() {
+            const batchLinks = document.getElementById('batchLinks').value;
+            const links = batchLinks.split('\n').filter(link => link.trim());
+            const fileIds = [];
+            
+            links.forEach(link => {
+                const fileIdMatch = link.match(/\/d\/([a-zA-Z0-9_-]+)\//);
+                if (fileIdMatch) {
+                    fileIds.push(fileIdMatch[1]);
+                }
+            });
+            
+            if (fileIds.length > 0) {
+                const batchResult = fileIds.map((id, index) => 
+                    `<div><strong>Photo ${index + 1}:</strong> ${id}</div>`
+                ).join('');
+                
+                document.getElementById('batchFileIds').innerHTML = batchResult;
+                document.getElementById('batchResult').style.display = 'block';
+            } else {
+                alert('No valid file IDs found. Please check your links.');
+            }
+        }
+    </script>
+</body>
+</html>
