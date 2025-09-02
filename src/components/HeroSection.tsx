@@ -165,9 +165,9 @@ const HeroSection = () => {
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4">
-                      <Link to="/event-gallery">
+                      <Link to="/events/gallery">
                         <Button variant="hero" size="lg" className="group">
-                          View Photo Gallery
+                          View Gallery
                           <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                         </Button>
                       </Link>

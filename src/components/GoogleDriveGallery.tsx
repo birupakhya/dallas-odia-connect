@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Image, X, ChevronLeft, ChevronRight, ExternalLink, Download, ZoomIn, Maximize2, Calendar, MapPin, Clock, Play, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import GoogleDriveService, { GoogleDrivePhoto } from '@/lib/google-drive';
+import GoogleDriveService, { GoogleDrivePhoto, EVENT_CONFIGS } from '@/lib/google-drive';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { useSearchParams } from 'react-router-dom';
@@ -15,8 +15,8 @@ interface GoogleDriveGalleryProps {
 
 const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
   folderId = '1Xy7Lq_1wHBVlnxvzvQ1ER5yMahQaR0kZ',
-  title = 'Ganesh Puja Celebration 2025',
-  subtitle = 'Relive the divine moments from our celebration of Lord Ganesh'
+  title = 'Photo Gallery',
+  subtitle = 'Browse our community events and celebrations'
 }) => {
   const [searchParams] = useSearchParams();
   const [photos, setPhotos] = useState<GoogleDrivePhoto[]>([]);
@@ -29,23 +29,30 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
 
   const driveService = GoogleDriveService.getInstance();
   const contentType = searchParams.get('type') || 'all';
+  const eventType = searchParams.get('event') || 'ganesh-puja-2025';
+  
+  // Get event configuration
+  const eventConfig = EVENT_CONFIGS[eventType as keyof typeof EVENT_CONFIGS] || EVENT_CONFIGS['ganesh-puja-2025'];
+  const effectiveFolderId = folderId || eventConfig.folderId;
+  const effectiveTitle = title === 'Photo Gallery' ? eventConfig.title : title;
+  const effectiveSubtitle = subtitle === 'Browse our community events and celebrations' ? eventConfig.subtitle : subtitle;
 
-  // Dynamic title and subtitle based on content type
+  // Dynamic title and subtitle based on content type and event
   const getTitle = () => {
-    if (contentType === 'videos') return 'Ganesh Puja Celebration 2025 - Videos';
-    if (contentType === 'photos') return 'Ganesh Puja Celebration 2025 - Photos';
-    return 'Ganesh Puja Celebration 2025';
+    if (contentType === 'videos') return `${effectiveTitle} - Videos`;
+    if (contentType === 'photos') return `${effectiveTitle} - Photos`;
+    return effectiveTitle;
   };
 
   const getSubtitle = () => {
-    if (contentType === 'videos') return 'Watch the video highlights from our celebration of Lord Ganesh';
-    if (contentType === 'photos') return 'Browse the photo memories from our celebration of Lord Ganesh';
-    return 'Relive the divine moments from our celebration of Lord Ganesh';
+    if (contentType === 'videos') return 'Watch the video highlights from our community events';
+    if (contentType === 'photos') return 'Browse the photo memories from our community events';
+    return effectiveSubtitle;
   };
 
   useEffect(() => {
     loadPhotos();
-  }, [folderId]);
+  }, [effectiveFolderId]);
 
   useEffect(() => {
     filterContent();
@@ -151,7 +158,7 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
     try {
       setLoading(true);
       setError(null);
-      const result = await driveService.getPhotosFromFolder(folderId, 1, 40); // Increased page size to 40
+      const result = await driveService.getPhotosFromFolder(effectiveFolderId, 1, 40); // Increased page size to 40
       setPhotos(result.photos);
       // setTotalPhotos(result.totalPhotos); // Removed as per new_code
       // setTotalPages(result.totalPages); // Removed as per new_code
@@ -225,8 +232,8 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
               </div>
               <h3 className="text-lg font-semibold mb-2">When</h3>
               <div className="text-sm text-muted-foreground">
-                <div className="font-medium">Saturday, August 30, 2025</div>
-                <div>10:30 AM - 1:45 PM</div>
+                <div className="font-medium">{eventConfig.date}</div>
+                <div>{eventConfig.time}</div>
               </div>
             </div>
             <div className="bg-background/80 backdrop-blur-sm border border-border rounded-xl p-6 text-center">
@@ -235,9 +242,9 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
               </div>
               <h3 className="text-lg font-semibold mb-2">Where</h3>
               <div className="text-sm text-muted-foreground">
-                <div className="font-medium">Shri Ram Mandir</div>
-                <div>6521 Chase Oaks Blvd</div>
-                <div>Plano, TX 75023</div>
+                <div className="font-medium">{eventConfig.location.split(',')[0]}</div>
+                <div>{eventConfig.location.split(',')[1]?.trim()}</div>
+                <div>{eventConfig.location.split(',')[2]?.trim()}</div>
               </div>
             </div>
             <div className="bg-background/80 backdrop-blur-sm border border-border rounded-xl p-6 text-center">
@@ -246,9 +253,9 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
               </div>
               <h3 className="text-lg font-semibold mb-2">Event Plan</h3>
               <div className="text-sm text-muted-foreground">
-                <div className="font-medium">10:30 AM - Puja</div>
-                <div>12:30 PM - Lunch</div>
-                <div>1:45 PM - Clean-up</div>
+                {Object.entries(eventConfig.eventPlan).map(([time, activity]) => (
+                  <div key={time} className="font-medium">{time} - {activity}</div>
+                ))}
               </div>
             </div>
           </div>
@@ -287,7 +294,7 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
               <Button
                 variant="outline"
                 size="lg"
-                onClick={() => window.open(`https://drive.google.com/drive/folders/${folderId}`, '_blank')}
+                onClick={() => window.open(`https://drive.google.com/drive/folders/${effectiveFolderId}`, '_blank')}
                 className="bg-background/80 backdrop-blur-sm border-border hover:bg-primary hover:text-primary-foreground transition-all duration-300"
               >
                 <ExternalLink className="h-5 w-5 mr-2" />
@@ -426,7 +433,7 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
               <Button 
                 variant="default" 
                 size="sm" 
-                onClick={() => window.open(`https://drive.google.com/drive/folders/${folderId}`, '_blank')}
+                onClick={() => window.open(`https://drive.google.com/drive/folders/${effectiveFolderId}`, '_blank')}
               >
                 Open in Drive
               </Button>

@@ -1,7 +1,29 @@
 // Google Drive API integration - Public access approach
 const GOOGLE_DRIVE_API_BASE = 'https://www.googleapis.com/drive/v3';
 const API_KEY = 'AIzaSyCtl_7LMYeiTZOeD-NqDM3lAwHOv979GIo';
-const FOLDER_ID = '1Xy7Lq_1wHBVlnxvzvQ1ER5yMahQaR0kZ'; // Your Ganesh Puja folder ID
+
+// Event configurations for different events
+export const EVENT_CONFIGS = {
+  'ganesh-puja-2025': {
+    folderId: '1Xy7Lq_1wHBVlnxvzvQ1ER5yMahQaR0kZ',
+    title: 'Ganesh Puja Celebration 2025',
+    subtitle: 'Relive the divine moments from our celebration of Lord Ganesh',
+    date: 'Saturday, August 30, 2025',
+    time: '10:30 AM - 1:45 PM',
+    location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
+    eventPlan: {
+      '10:30 AM': 'Puja',
+      '12:30 PM': 'Lunch',
+      '1:45 PM': 'Clean-up'
+    }
+  }
+  // Future events can be added here:
+  // 'kumar-purnima-2025': { ... },
+  // 'diwali-2025': { ... },
+  // etc.
+};
+
+const FOLDER_ID = EVENT_CONFIGS['ganesh-puja-2025'].folderId; // Default folder ID
 
 export interface GoogleDriveFile {
   id: string;

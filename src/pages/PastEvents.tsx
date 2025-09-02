@@ -74,17 +74,17 @@ const PastEvents = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-serif font-bold text-primary mb-6">
-              Past Events & Memories
+              Past Events & Photo Gallery
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Relive the magic of our community events through photos, videos, and cherished memories. 
+              Relive the magic of our community events through our comprehensive photo gallery. 
               Each event represents the strength and unity of our DOS family.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/events/gallery">
                 <Button variant="hero" size="lg">
                   <Image className="mr-2 h-5 w-5" />
-                  View Photo Gallery
+                  Browse Photo Gallery
                 </Button>
               </Link>
               <Link to="/events/gallery?type=videos">
@@ -191,7 +191,7 @@ const PastEvents = () => {
                       <Link to="/events/gallery" className="flex-1">
                         <Button variant="default" size="sm" className="w-full">
                           <Image className="mr-2 h-4 w-4" />
-                          View Photo Gallery
+                          View Gallery
                         </Button>
                       </Link>
                     </div>
