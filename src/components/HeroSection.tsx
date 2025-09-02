@@ -3,6 +3,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { ArrowRight, Users, Calendar, Heart, Star, MapPin, Clock } from 'lucide-react';
 import heroImage from '@/assets/new-hero-temple-cropped.jpg';
 import culturalDanceImage from '@/assets/cultural-dance.jpg';
+import ganeshPujaBg from '@/assets/ganesh-puja-bg.JPG';
 import Autoplay from 'embla-carousel-autoplay';
 import { Link } from 'react-router-dom';
 
@@ -117,8 +118,8 @@ const HeroSection = () => {
               {/* Background Image */}
               <div className="absolute inset-0">
                 <img
-                  src={heroImage}
-                  alt="Traditional Odisha temple with golden sunset"
+                  src={ganeshPujaBg}
+                  alt="Ganesh Puja celebration background"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/60"></div>
