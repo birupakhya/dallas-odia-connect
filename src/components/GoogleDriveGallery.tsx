@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image, X, ChevronLeft, ChevronRight, ExternalLink, Download, ZoomIn, Maximize2 } from 'lucide-react';
+import { Image, X, ChevronLeft, ChevronRight, ExternalLink, Download, ZoomIn, Maximize2, Calendar, MapPin, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import GoogleDriveService, { GoogleDrivePhoto } from '@/lib/google-drive';
@@ -110,7 +110,7 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
     try {
       setLoading(true);
       setError(null);
-      const result = await driveService.getPhotosFromFolder(folderId, 1, 20); // Fixed page size of 20
+      const result = await driveService.getPhotosFromFolder(folderId, 1, 40); // Increased page size to 40
       setPhotos(result.photos);
       setFilteredPhotos(result.photos);
       // setTotalPhotos(result.totalPhotos); // Removed as per new_code
@@ -176,13 +176,40 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
             </p>
           </div>
 
-          {/* Stats */}
+          {/* Event Summary */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
             <div className="bg-background/80 backdrop-blur-sm border border-border rounded-xl p-6 text-center">
-              <div className="text-3xl font-bold text-primary mb-2">{photos.length}</div>
-              <div className="text-muted-foreground">Total Photos</div>
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Calendar className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">When</h3>
+              <div className="text-sm text-muted-foreground">
+                <div className="font-medium">Saturday, August 30, 2025</div>
+                <div>10:30 AM - 1:45 PM</div>
+              </div>
             </div>
-            {/* Removed Pages and Per Page stats */}
+            <div className="bg-background/80 backdrop-blur-sm border border-border rounded-xl p-6 text-center">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <MapPin className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Where</h3>
+              <div className="text-sm text-muted-foreground">
+                <div className="font-medium">Shri Ram Mandir</div>
+                <div>6521 Chase Oaks Blvd</div>
+                <div>Plano, TX 75023</div>
+              </div>
+            </div>
+            <div className="bg-background/80 backdrop-blur-sm border border-border rounded-xl p-6 text-center">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Clock className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Event Plan</h3>
+              <div className="text-sm text-muted-foreground">
+                <div className="font-medium">10:30 AM - Puja</div>
+                <div>12:30 PM - Lunch</div>
+                <div>1:45 PM - Clean-up</div>
+              </div>
+            </div>
           </div>
 
           {/* Search and Controls */}
@@ -199,9 +226,9 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
                 View All in Drive
               </Button>
 
-              {/* Page Size Selector - Fixed at 20 */}
+              {/* Page Size Selector - Fixed at 40 */}
               <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">Showing 20 photos</span>
+                <span className="text-sm text-muted-foreground">Showing 40 photos</span>
               </div>
             </div>
           </div>
