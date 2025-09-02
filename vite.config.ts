@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  assetsInclude: ['**/*.jpg', '**/*.JPG', '**/*.png', '**/*.jpeg', '**/*.gif', '**/*.webp'],
   plugins: [
     react(),
     mode === 'development' &&
