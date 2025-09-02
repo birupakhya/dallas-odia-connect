@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Image, X, ChevronLeft, ChevronRight, ExternalLink, Download, ZoomIn, Maximize2 } from 'lucide-react';
+import { Image, X, ChevronLeft, ChevronRight, ExternalLink, Download, ZoomIn, Maximize2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import GoogleDriveService, { GoogleDrivePhoto } from '@/lib/google-drive';
 
@@ -20,48 +19,15 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
   const [filteredPhotos, setFilteredPhotos] = useState<GoogleDrivePhoto[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
   const [selectedPhoto, setSelectedPhoto] = useState<GoogleDrivePhoto | null>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPhotos, setTotalPhotos] = useState(0);
-  const [totalPages, setTotalPages] = useState(1);
-  const [pageSize, setPageSize] = useState(20);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const driveService = GoogleDriveService.getInstance();
 
   useEffect(() => {
     loadPhotos();
-  }, [folderId, currentPage, pageSize]);
-
-  useEffect(() => {
-    if (searchTerm) {
-      const filtered = photos.filter(photo =>
-        photo.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredPhotos(filtered);
-    } else {
-      setFilteredPhotos(photos);
-    }
-  }, [searchTerm, photos]);
-
-  const loadPhotos = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const result = await driveService.getPhotosFromFolder(folderId, currentPage, pageSize);
-      setPhotos(result.photos);
-      setFilteredPhotos(result.photos);
-      setTotalPhotos(result.totalPhotos);
-      setTotalPages(result.totalPages);
-    } catch (err) {
-      console.error('Failed to load photos:', err);
-      setError('Failed to load photos. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [folderId]);
 
   // Enhanced image loading with multiple fallback URLs
   const loadImageWithFallbacks = (photo: GoogleDrivePhoto, imgElement: HTMLImageElement) => {
@@ -140,9 +106,21 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [lightboxOpen, selectedPhoto, filteredPhotos, isFullscreen]);
 
-  const goToPage = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const loadPhotos = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const result = await driveService.getPhotosFromFolder(folderId, 1, 20); // Fixed page size of 20
+      setPhotos(result.photos);
+      setFilteredPhotos(result.photos);
+      // setTotalPhotos(result.totalPhotos); // Removed as per new_code
+      // setTotalPages(result.totalPages); // Removed as per new_code
+    } catch (err) {
+      console.error('Failed to load photos:', err);
+      setError('Failed to load photos. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const openInGoogleDrive = (photo: GoogleDrivePhoto) => {
@@ -201,34 +179,15 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
             <div className="bg-background/80 backdrop-blur-sm border border-border rounded-xl p-6 text-center">
-              <div className="text-3xl font-bold text-primary mb-2">{totalPhotos}</div>
+              <div className="text-3xl font-bold text-primary mb-2">{photos.length}</div>
               <div className="text-muted-foreground">Total Photos</div>
             </div>
-            <div className="bg-background/80 backdrop-blur-sm border border-border rounded-xl p-6 text-center">
-              <div className="text-3xl font-bold text-primary mb-2">{totalPages}</div>
-              <div className="text-muted-foreground">Pages</div>
-            </div>
-            <div className="bg-background/80 backdrop-blur-sm border border-border rounded-xl p-6 text-center">
-              <div className="text-3xl font-bold text-primary mb-2">{pageSize}</div>
-              <div className="text-muted-foreground">Per Page</div>
-            </div>
+            {/* Removed Pages and Per Page stats */}
           </div>
 
           {/* Search and Controls */}
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mb-8">
-              {/* Search */}
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <Input
-                  type="text"
-                  placeholder="Search photos..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 bg-background/80 backdrop-blur-sm border-border"
-                />
-              </div>
-
               {/* View All in Drive Button */}
               <Button
                 variant="outline"
@@ -240,24 +199,9 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
                 View All in Drive
               </Button>
 
-              {/* Page Size Selector */}
+              {/* Page Size Selector - Fixed at 20 */}
               <div className="flex items-center gap-2">
-                <select
-                  value={pageSize}
-                  onChange={(e) => {
-                    const newSize = parseInt(e.target.value);
-                    setPageSize(newSize);
-                    setCurrentPage(1);
-                  }}
-                  className="border border-border rounded-lg px-3 py-2 text-sm bg-background/80 backdrop-blur-sm"
-                >
-                  <option value={20}>20</option>
-                  <option value={40}>40</option>
-                  <option value={60}>60</option>
-                  <option value={80}>80</option>
-                  <option value={100}>100</option>
-                </select>
-                <span className="text-sm text-muted-foreground">per page</span>
+                <span className="text-sm text-muted-foreground">Showing 20 photos</span>
               </div>
             </div>
           </div>
@@ -325,56 +269,7 @@ const GoogleDriveGallery: React.FC<GoogleDriveGalleryProps> = ({
           )}
 
           {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-4 mt-12">
-              <Button
-                variant="outline"
-                onClick={() => goToPage(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="flex items-center gap-2"
-              >
-                <ChevronLeft className="h-4 w-4" />
-                Previous
-              </Button>
-
-              <div className="flex items-center gap-2">
-                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                  let pageNum;
-                  if (totalPages <= 5) {
-                    pageNum = i + 1;
-                  } else if (currentPage <= 3) {
-                    pageNum = i + 1;
-                  } else if (currentPage >= totalPages - 2) {
-                    pageNum = totalPages - 4 + i;
-                  } else {
-                    pageNum = currentPage - 2 + i;
-                  }
-
-                  return (
-                    <Button
-                      key={pageNum}
-                      variant={currentPage === pageNum ? 'default' : 'outline'}
-                      size="sm"
-                      onClick={() => goToPage(pageNum)}
-                      className="h-8 w-8 p-0"
-                    >
-                      {pageNum}
-                    </Button>
-                  );
-                })}
-              </div>
-
-              <Button
-                variant="outline"
-                onClick={() => goToPage(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="flex items-center gap-2"
-              >
-                Next
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-            </div>
-          )}
+          {/* Removed pagination as per new_code */}
         </div>
       </section>
 
