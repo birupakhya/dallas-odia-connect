@@ -7,7 +7,7 @@ const NewsAndAnnouncements = () => {
   const announcements = [
     {
       id: 1,
-      title: 'Kumar Purnima Survey 2025 - Please RSVP To KP-2025',
+      title: 'Kumar Purnima 2025 - Please RSVP To KP-2025',
       date: '2024-12-01',
       type: 'Survey',
       excerpt: 'Help us plan the perfect Kumar Purnima celebration for 2025. Your input is valuable in making this event a memorable experience for our entire community.',

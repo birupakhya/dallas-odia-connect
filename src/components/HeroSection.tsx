@@ -199,7 +199,7 @@ const HeroSection = () => {
             </div>
           </CarouselItem>
 
-          {/* Kumar Purnima Survey 2025 Slide */}
+          {/* Kumar Purnima 2025 Slide */}
           <CarouselItem>
             <div className="relative bg-gradient-cultural">
               {/* Background Image */}
@@ -223,7 +223,7 @@ const HeroSection = () => {
                         <span className="text-lg font-medium">Important Survey</span>
                       </div>
                       <h1 className="text-4xl md:text-6xl font-serif font-bold leading-tight">
-                        Kumar Purnima Survey 2025
+                        Kumar Purnima 2025
                       </h1>
                       <p className="text-xl md:text-2xl font-light opacity-90">
                         Please RSVP To KP-2025
@@ -275,19 +275,19 @@ const HeroSection = () => {
                     <div className="space-y-4 text-white/90">
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
-                        <span>Preferred event date and time</span>
+                        <span>Contact information (Name, Email, Phone)</span>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
-                        <span>Venue preferences and accessibility</span>
+                        <span>Number of adult and kid attendees</span>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
-                        <span>Cultural activities and performances</span>
+                        <span>Dietary preferences (Vegetarian/Non-vegetarian)</span>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
-                        <span>Food preferences and dietary requirements</span>
+                        <span>Kids details (Names and ages)</span>
                       </div>
                     </div>
                   </div>
