@@ -119,32 +119,27 @@ export class GoogleDriveService {
 
   // Generate public image URL - this will work if images are made public
   getPublicImageUrl(fileId: string): string {
-    // Use Google Drive's public image URL format that bypasses CORS restrictions
-    // This format converts the file ID to a direct image URL
-    const url = `https://drive.google.com/uc?export=view&id=${fileId}`;
-    console.log(`🔗 Generated public image URL for ${fileId}:`, url);
+    // Use the large thumbnail format that works with current permissions
+    // This format bypasses the need for "public on the web" permissions
+    const url = `https://drive.google.com/thumbnail?id=${fileId}&sz=w800`;
+    console.log(`🔗 Generated working thumbnail URL for ${fileId}:`, url);
     return url;
   }
 
   // Get all available image URLs for a file ID - ordered by compatibility
   getAllImageUrls(fileId: string): string[] {
     return [
-      // Primary format - Google Drive's public image URL (bypasses CORS)
-      `https://drive.google.com/uc?export=view&id=${fileId}`,
-      // Alternative format using file/d structure
-      `https://drive.google.com/file/d/${fileId}/view`,
-      // Preview format
-      `https://drive.google.com/file/d/${fileId}/preview`,
-      // Thumbnail format (smaller size, might work better)
+      // Primary format - Large thumbnail that works with current permissions
       `https://drive.google.com/thumbnail?id=${fileId}&sz=w800`,
-      // Direct download format (might work for some file types)
-      `https://drive.google.com/uc?export=download&id=${fileId}`,
       // Alternative thumbnail sizes
-      `https://drive.google.com/thumbnail?id=${fileId}&sz=w400`,
       `https://drive.google.com/thumbnail?id=${fileId}&sz=w600`,
-      // Try different export parameters
-      `https://drive.google.com/uc?export=view&id=${fileId}&sz=w800`,
-      `https://drive.google.com/uc?export=view&id=${fileId}&sz=w600`
+      `https://drive.google.com/thumbnail?id=${fileId}&sz=w400`,
+      // Fallback formats (might work if permissions change)
+      `https://drive.google.com/uc?export=view&id=${fileId}`,
+      `https://drive.google.com/file/d/${fileId}/preview`,
+      `https://drive.google.com/file/d/${fileId}/view`,
+      // Direct download format (might work for some file types)
+      `https://drive.google.com/uc?export=download&id=${fileId}`
     ];
   }
 
