@@ -42,7 +42,7 @@ const Navigation = () => {
         // { name: 'Current Event', href: '/events/current' }, // Commented out for now
         { name: 'Upcoming Events', href: '/events/upcoming' },
         { name: 'Past Events', href: '/events/past' },
-        { name: 'Past Event Photos and Videos', href: '/events/gallery' },
+        { name: 'Photo Gallery', href: '/events/gallery' },
       ]
     },
     { name: 'Contact Us', href: '/contact' },
