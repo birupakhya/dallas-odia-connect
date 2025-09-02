@@ -141,11 +141,6 @@ const HeroSection = () => {
                       <p className="text-xl md:text-2xl font-light opacity-90">
                         A Divine Celebration of Lord Ganesh
                       </p>
-                      <p className="text-lg opacity-80 max-w-lg">
-                        Join us in celebrating the divine presence of Lord Ganesh through 
-                        traditional rituals, cultural performances, and community festivities. 
-                        Experience the spiritual essence of this sacred celebration.
-                      </p>
                     </div>
 
                     {/* Event Details */}
@@ -185,10 +180,6 @@ const HeroSection = () => {
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
                         <span>Traditional Ganesh Puja rituals</span>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
-                        <span>Cultural dance performances</span>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-yellow-300 rounded-full mt-2"></div>
