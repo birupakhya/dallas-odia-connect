@@ -52,10 +52,10 @@ const Footer = () => {
                 <Mail className="h-5 w-5 text-primary" />
                 <span>info@dallasodiasociety.org</span>
               </div>
-              <div className="flex items-center space-x-3 text-muted-foreground">
+              {/* <div className="flex items-center space-x-3 text-muted-foreground">
                 <Phone className="h-5 w-5 text-primary" />
                 <span>(469) 123-4567</span>
-              </div>
+              </div> */}
               <div className="flex items-center space-x-3 text-muted-foreground">
                 <MapPin className="h-5 w-5 text-primary" />
                 <span>Dallas-Fort Worth, Texas</span>
