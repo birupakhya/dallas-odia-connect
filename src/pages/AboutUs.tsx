@@ -134,7 +134,7 @@ const AboutUs = () => {
         </section>
 
         {/* Event Committee */}
-        <section className="mt-20">
+        {/* <section className="mt-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-serif font-bold gradient-text mb-4">
               Event Committee
@@ -179,10 +179,10 @@ const AboutUs = () => {
               </Card>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* Grievance Committee */}
-        <section className="mt-20">
+        {/* <section className="mt-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-serif font-bold gradient-text mb-4">
               Grievance Committee
@@ -227,7 +227,7 @@ const AboutUs = () => {
               </Card>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* Community Values */}
         <section className="mt-20 text-center">
