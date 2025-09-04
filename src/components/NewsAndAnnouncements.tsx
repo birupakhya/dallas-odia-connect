@@ -48,7 +48,7 @@ const NewsAndAnnouncements = () => {
   return (
     <section className="py-16 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center mb-12">
+        <div className="mb-12">
           <div>
             <h2 className="text-3xl md:text-4xl font-serif font-bold gradient-text mb-4">
               News & Announcements
@@ -57,9 +57,6 @@ const NewsAndAnnouncements = () => {
               Stay updated with the latest community news and upcoming activities
             </p>
           </div>
-          <Button variant="warm">
-            View All News
-          </Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
