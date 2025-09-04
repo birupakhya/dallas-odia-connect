@@ -27,7 +27,7 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-b from-muted/30 to-muted border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
           {/* Organization Info */}
           <div className="lg:col-span-2 space-y-6">
@@ -81,11 +81,11 @@ const Footer = () => {
           </div>
 
           {/* Connect & Support */}
-          <div className="space-y-6">
+          {/* <div className="space-y-6">
             <h4 className="text-lg font-semibold text-foreground">Connect & Support</h4>
             
             {/* Social Media */}
-            <div>
+            {/* <div>
               <p className="text-sm text-muted-foreground mb-3">Follow us on social media</p>
               <div className="flex space-x-3">
                 {socialLinks.map((social) => {
@@ -105,7 +105,7 @@ const Footer = () => {
             </div>
 
             {/* Newsletter */}
-            <div>
+            {/* <div>
               <p className="text-sm text-muted-foreground mb-3">Stay updated</p>
               <Button variant="cultural" size="sm" className="w-full">
                 Subscribe to Newsletter
@@ -113,7 +113,7 @@ const Footer = () => {
             </div>
 
             {/* Feedback */}
-            <div>
+            {/* <div>
               <p className="text-sm text-muted-foreground mb-3">Help us improve</p>
               <Button 
                 variant="outline" 
@@ -127,13 +127,13 @@ const Footer = () => {
             </div>
 
             {/* Donate */}
-            <div>
+            {/* <div>
               <p className="text-sm text-muted-foreground mb-3">Support our mission</p>
               <Button variant="hero" size="sm" className="w-full">
                 Donate Now
               </Button>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom Section */}
