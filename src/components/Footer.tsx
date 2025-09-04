@@ -50,7 +50,11 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-muted-foreground">
                 <Mail className="h-5 w-5 text-primary" />
-                <span>info@dallasodiasociety.org</span>
+                <span>BoD@DallasOdiaSociety.org</span>
+              </div>
+              <div className="flex items-center space-x-3 text-muted-foreground">
+                <Mail className="h-5 w-5 text-primary" />
+                <span>Treasurer@DallasOdiaSociety.org</span>
               </div>
               {/* <div className="flex items-center space-x-3 text-muted-foreground">
                 <Phone className="h-5 w-5 text-primary" />
