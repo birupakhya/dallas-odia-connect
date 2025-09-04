@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, Image } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const NewsAndAnnouncements = () => {
   const announcements = [
@@ -15,27 +16,12 @@ const NewsAndAnnouncements = () => {
     },
     {
       id: 2,
-      title: 'Dallas Odia Society - Non-Profit Organization',
-      date: '2024-11-20',
-      type: 'Information',
-      excerpt: 'DOS is a non-profit organization operated exclusively for socio-cultural and charitable purposes, serving the Odia community in DFW since 2004.',
+      title: 'Ganesh Puja Celebration 2025 - Photo Gallery',
+      date: '2025-08-30',
+      type: 'Gallery',
+      excerpt: 'Relive the divine moments from our Ganesh Puja celebration. Browse through photos and videos from this memorable community event.',
       urgent: false,
-    },
-    {
-      id: 3,
-      title: 'Mission & Vision - Home Away From Home',
-      date: '2024-11-25',
-      type: 'Community',
-      excerpt: 'Our vision is to be an inclusive Odia community where members cooperate to promote Odia culture and provide a reliable support system.',
-      urgent: false,
-    },
-    {
-      id: 4,
-      title: 'Become a Member - Join Our Community',
-      date: '2024-12-01',
-      type: 'Membership',
-      excerpt: 'If you are a person and/or family of Odisha Origin living in DFW Metroplex - we welcome you to Dallas Odia Society.',
-      urgent: false,
+      linkTo: '/events/gallery',
     },
   ];
 
@@ -51,6 +37,7 @@ const NewsAndAnnouncements = () => {
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'Survey': return 'bg-primary text-primary-foreground';
+      case 'Gallery': return 'bg-secondary text-secondary-foreground';
       case 'Information': return 'bg-secondary text-secondary-foreground';
       case 'Community': return 'bg-accent text-accent-foreground';
       case 'Membership': return 'bg-muted text-muted-foreground';
@@ -122,6 +109,14 @@ const NewsAndAnnouncements = () => {
                       <ArrowRight className="h-4 w-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
                     </Button>
                   </a>
+                ) : announcement.type === 'Gallery' ? (
+                  <Link to={announcement.linkTo || '/events/gallery'}>
+                    <Button variant="ghost" className="group/btn p-0 h-auto">
+                      <Image className="h-4 w-4 mr-1" />
+                      View Photo Gallery
+                      <ArrowRight className="h-4 w-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
                 ) : (
                   <Button variant="ghost" className="group/btn p-0 h-auto">
                     Read More 

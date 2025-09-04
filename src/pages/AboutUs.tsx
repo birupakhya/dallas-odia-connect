@@ -30,28 +30,20 @@ const AboutUs = () => {
   // Event Committee data
   const eventCommittee = [
     {
-      name: "Nilashree Behera",
-      // image: eventMember1, // Add image when available
-      bio: "Dedicated member of our event committee, working to create memorable cultural celebrations and community gatherings."
+      name: "Nilashree Behera"
     },
     {
-      name: "Pushpa Mohapatra",
-      // image: eventMember2, // Add image when available
-      bio: "Passionate about organizing events that bring our community together and celebrate our rich Odia heritage."
+      name: "Pushpa Mohapatra"
     }
   ];
 
   // Grievance Committee data
   const grievanceCommittee = [
     {
-      name: "Jaydeep Biswal",
-      // image: grievanceMember1, // Add image when available
-      bio: "Committed to ensuring fair and transparent resolution of community concerns through impartial mediation."
+      name: "Jaydeep Biswal"
     },
     {
-      name: "Gagan Acharya",
-      // image: grievanceMember2, // Add image when available
-      bio: "Dedicated to maintaining harmony and trust within our organization through effective grievance resolution."
+      name: "Gagan Acharya"
     }
   ];
 
@@ -149,33 +141,10 @@ const AboutUs = () => {
             {eventCommittee.map((member, index) => (
               <Card key={index} className="group hover:shadow-cultural transition-all duration-300 border-0 bg-card/50 backdrop-blur-sm">
                 <CardHeader className="text-center">
-                  <div className="relative mx-auto mb-6">
-                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary/40 transition-colors duration-300">
-                      {member.image ? (
-                        <img 
-                          src={member.image} 
-                          alt={`${member.name} - Event Committee Member`}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-muted/50 flex items-center justify-center">
-                          <div className="text-center">
-                            <div className="text-4xl text-muted-foreground/50 mb-2">👤</div>
-                            <div className="text-xs text-muted-foreground">Photo Coming Soon</div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
                   <CardTitle className="text-xl md:text-2xl font-serif text-primary">
                     {member.name}
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed text-center">
-                    {member.bio}
-                  </p>
-                </CardContent>
               </Card>
             ))}
           </div>
@@ -197,33 +166,10 @@ const AboutUs = () => {
             {grievanceCommittee.map((member, index) => (
               <Card key={index} className="group hover:shadow-cultural transition-all duration-300 border-0 bg-card/50 backdrop-blur-sm">
                 <CardHeader className="text-center">
-                  <div className="relative mx-auto mb-6">
-                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary/40 transition-colors duration-300">
-                      {member.image ? (
-                        <img 
-                          src={member.image} 
-                          alt={`${member.name} - Grievance Committee Member`}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-muted/50 flex items-center justify-center">
-                          <div className="text-center">
-                            <div className="text-4xl text-muted-foreground/50 mb-2">👤</div>
-                            <div className="text-xs text-muted-foreground">Photo Coming Soon</div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
                   <CardTitle className="text-xl md:text-2xl font-serif text-primary">
                     {member.name}
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed text-center">
-                    {member.bio}
-                  </p>
-                </CardContent>
               </Card>
             ))}
           </div>
