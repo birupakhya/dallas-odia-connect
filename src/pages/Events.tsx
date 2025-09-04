@@ -175,7 +175,7 @@ const Events = () => {
               Discover our vibrant community events, cultural celebrations, and memorable moments 
               captured through the lens of our DOS family.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="hero" size="lg">
                 <Calendar className="mr-2 h-5 w-5" />
                 View Calendar
@@ -184,7 +184,7 @@ const Events = () => {
                 <ExternalLink className="mr-2 h-5 w-5" />
                 Join Event
               </Button>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
