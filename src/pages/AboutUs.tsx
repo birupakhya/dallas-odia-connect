@@ -90,24 +90,6 @@ const AboutUs = () => {
             {boardMembers.map((member, index) => (
               <Card key={index} className="group hover:shadow-cultural transition-all duration-300 border-0 bg-card/50 backdrop-blur-sm">
                 <CardHeader className="text-center">
-                  <div className="relative mx-auto mb-6">
-                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary/40 transition-colors duration-300">
-                      {member.image ? (
-                        <img 
-                          src={member.image} 
-                          alt={`${member.name} - Board Member`}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-muted/50 flex items-center justify-center">
-                          <div className="text-center">
-                            <div className="text-4xl text-muted-foreground/50 mb-2">👤</div>
-                            <div className="text-xs text-muted-foreground">Photo Coming Soon</div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
                   <CardTitle className="text-xl md:text-2xl font-serif text-primary">
                     {member.name}
                   </CardTitle>
