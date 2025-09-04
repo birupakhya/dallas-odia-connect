@@ -15,12 +15,6 @@ const ContactUs = () => {
   const contactInfo = [
     {
       icon: Mail,
-      title: "General Inquiries",
-      content: "info@dallasodiasociety.org",
-      description: "Send us an email for general inquiries"
-    },
-    {
-      icon: Mail,
       title: "Board of Directors",
       content: "BoD@DallasOdiaSociety.org",
       description: "Contact the Board of Directors"
