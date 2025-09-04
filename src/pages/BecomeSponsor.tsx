@@ -113,12 +113,16 @@ const BecomeSponsor = () => {
               in becoming a sponsor. Contact us to learn more about sponsorship opportunities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="hero" size="lg" className="group">
-                Contact Us About Sponsorship
-                <DollarSign className="h-5 w-5 ml-2 group-hover:scale-110 transition-transform" />
+              <Button variant="hero" size="lg" className="group" asChild>
+                <a href="mailto:BoD@DallasOdiaSociety.org?subject=Sponsorship%20Inquiry&body=Hello,%0D%0A%0D%0AI%20am%20interested%20in%20becoming%20a%20sponsor%20for%20the%20Dallas%20Odia%20Society.%0D%0A%0D%0APlease%20let%20me%20know%20about%20the%20available%20sponsorship%20opportunities%20and%20how%20to%20proceed.%0D%0A%0D%0AThank%20you!">
+                  Contact Us About Sponsorship
+                  <DollarSign className="h-5 w-5 ml-2 group-hover:scale-110 transition-transform" />
+                </a>
               </Button>
-              <Button variant="warm" size="lg">
-                Learn More About DOS
+              <Button variant="warm" size="lg" asChild>
+                <a href="mailto:BoD@DallasOdiaSociety.org?subject=Learn%20More%20About%20DOS&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20learn%20more%20about%20the%20Dallas%20Odia%20Society%20and%20its%20activities.%0D%0A%0D%0APlease%20provide%20me%20with%20more%20information.%0D%0A%0D%0AThank%20you!">
+                  Learn More About DOS
+                </a>
               </Button>
             </div>
           </div>
@@ -177,11 +181,15 @@ const BecomeSponsor = () => {
               benefits, payment methods, and frequently asked questions. Check back soon for complete details.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="outline">
-                Subscribe for Updates
+              <Button variant="outline" asChild>
+                <a href="mailto:BoD@DallasOdiaSociety.org?subject=Subscribe%20for%20Sponsorship%20Updates&body=Hello,%0D%0A%0D%0APlease%20add%20me%20to%20your%20mailing%20list%20for%20sponsorship%20updates%20and%20opportunities.%0D%0A%0D%0AThank%20you!">
+                  Subscribe for Updates
+                </a>
               </Button>
-              <Button variant="hero">
-                Contact Us Now
+              <Button variant="hero" asChild>
+                <a href="mailto:BoD@DallasOdiaSociety.org?subject=Contact%20Us%20Now%20-%20Sponsorship&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20contact%20you%20regarding%20sponsorship%20opportunities%20with%20the%20Dallas%20Odia%20Society.%0D%0A%0D%0APlease%20let%20me%20know%20how%20to%20proceed.%0D%0A%0D%0AThank%20you!">
+                  Contact Us Now
+                </a>
               </Button>
             </div>
           </div>

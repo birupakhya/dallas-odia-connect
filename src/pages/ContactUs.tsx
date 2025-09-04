@@ -143,6 +143,26 @@ const ContactUs = () => {
                 </CardContent>
               </Card>
 
+              {/* Alternative Contact Method */}
+              <div className="text-center mt-6">
+                <p className="text-sm text-muted-foreground mb-3">
+                  Prefer to email directly? Contact us at:
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Button variant="outline" asChild>
+                    <a href="mailto:BoD@DallasOdiaSociety.org?subject=Contact%20Us%20Inquiry">
+                      <Mail className="mr-2 h-4 w-4" />
+                      BoD@DallasOdiaSociety.org
+                    </a>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <a href="mailto:Treasurer@DallasOdiaSociety.org?subject=Financial%20Inquiry">
+                      <Mail className="mr-2 h-4 w-4" />
+                      Treasurer@DallasOdiaSociety.org
+                    </a>
+                  </Button>
+                </div>
+              </div>
 
             </div>
           </div>

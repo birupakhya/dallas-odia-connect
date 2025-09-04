@@ -165,8 +165,10 @@ const BecomeMember = () => {
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-muted-foreground mb-4">{plan.description}</p>
-                  <Button variant="hero" className="w-full">
-                    Choose {plan.type}
+                  <Button variant="hero" className="w-full" asChild>
+                    <a href={`mailto:BoD@DallasOdiaSociety.org?subject=Membership%20Inquiry%20-%20${encodeURIComponent(plan.type)}&body=Hello,%0D%0A%0D%0AI%20am%20interested%20in%20the%20${encodeURIComponent(plan.type)}%20(${plan.price})%20for%20the%20Dallas%20Odia%20Society.%0D%0A%0D%0APlease%20let%20me%20know%20how%20to%20proceed%20with%20the%20membership%20process.%0D%0A%0D%0AThank%20you!`}>
+                      Choose {plan.type}
+                    </a>
                   </Button>
                 </CardContent>
               </Card>

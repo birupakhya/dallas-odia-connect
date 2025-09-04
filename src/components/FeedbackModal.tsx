@@ -24,26 +24,51 @@ const FeedbackModal = ({ isOpen, onClose }: FeedbackModalProps) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Here you would typically send the feedback to your backend
-    console.log('Feedback submitted:', {
-      type: feedbackType,
-      rating,
-      name,
-      email,
-      message
-    });
-    
-    setIsSubmitting(false);
-    onClose();
-    // Reset form
-    setFeedbackType('general');
-    setRating('5');
-    setName('');
-    setEmail('');
-    setMessage('');
+    try {
+      // Create email content
+      const subject = `DOS Website Feedback - ${feedbackType.charAt(0).toUpperCase() + feedbackType.slice(1)}`;
+      const body = `
+Feedback Type: ${feedbackType.charAt(0).toUpperCase() + feedbackType.slice(1)}
+Rating: ${rating}/5
+Name: ${name || 'Not provided'}
+Email: ${email || 'Not provided'}
+
+Message:
+${message}
+
+---
+This feedback was submitted through the DOS website feedback form.
+      `.trim();
+
+      // Create mailto link
+      const mailtoLink = `mailto:BoD@DallasOdiaSociety.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      // Open email client
+      window.open(mailtoLink, '_blank');
+      
+      // Simulate form submission delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      console.log('Feedback submitted:', {
+        type: feedbackType,
+        rating,
+        name,
+        email,
+        message
+      });
+      
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+    } finally {
+      setIsSubmitting(false);
+      onClose();
+      // Reset form
+      setFeedbackType('general');
+      setRating('5');
+      setName('');
+      setEmail('');
+      setMessage('');
+    }
   };
 
   return (
