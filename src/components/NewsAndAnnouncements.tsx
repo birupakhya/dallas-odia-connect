@@ -126,7 +126,7 @@ const NewsAndAnnouncements = () => {
         </div>
 
         {/* Email Subscription */}
-        <div className="mt-16 bg-gradient-warm rounded-2xl p-8 text-center shadow-elevated">
+        {/* <div className="mt-16 bg-gradient-warm rounded-2xl p-8 text-center shadow-elevated">
           <h3 className="text-2xl font-serif font-semibold text-foreground mb-4">
             Stay Connected
           </h3>
@@ -144,7 +144,7 @@ const NewsAndAnnouncements = () => {
               Subscribe to Email Group
             </Button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
