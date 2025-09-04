@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, MapPin, Users, Clock, ExternalLink } from 'lucide-react';
+import { Calendar, MapPin, Users, Clock, ExternalLink, Image, Play } from 'lucide-react';
 import PhotoGalleryGrid from '@/components/PhotoGalleryGrid';
 
 interface Event {
@@ -112,51 +112,26 @@ const Events = () => {
       date: 'November 1st, 2025',
       time: '12 PM - 11 PM',
       location: '200 S. Heartz Road, Coppell 75019',
-      description: 'Join us for the annual Kumar Purnima celebration featuring traditional rituals, cultural performances, and community bonding.',
+      description: 'Annual Kumar Purnima celebration with traditional rituals, cultural performances, and community bonding.',
       attendees: 0,
       status: 'upcoming',
       category: 'Cultural Events',
       photos: samplePhotos.filter(p => p.category === 'Cultural Events')
     }
-    // Commented out other events for now
-    // {
-    //   id: '2',
-    //   title: 'Odia Language Classes',
-    //   date: 'Every Saturday',
-    //   time: '10:00 AM - 12:00 PM',
-    //   location: 'Irving Community Center',
-    //   description: 'Weekly Odia language classes for children and adults. Learn to read, write, and speak Odia.',
-    //   attendees: 25,
-    //   status: 'ongoing',
-    //   category: 'Educational',
-    //   photos: samplePhotos.filter(p => p.category === 'Educational')
-    // }
   ];
 
   const pastEvents: Event[] = [
     {
-      id: '3',
-      title: 'Ratha Yatra 2024',
-      date: 'July 20, 2024',
-      time: '4:00 PM - 8:00 PM',
-      location: 'Plano Community Center',
-      description: 'Successful Ratha Yatra celebration with over 200 community members participating.',
-      attendees: 200,
+      id: '1',
+      title: 'Ganesh Puja Celebration 2025',
+      date: 'August 30, 2025',
+      time: '10:30 AM - 1:45 PM',
+      location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
+      description: 'A divine celebration of Lord Ganesh featuring traditional rituals, cultural performances, and community festivities. The event included morning puja, community lunch, and concluded with clean-up activities.',
+      attendees: 0,
       status: 'past',
       category: 'Religious Events',
       photos: samplePhotos.filter(p => p.category === 'Religious Events')
-    },
-    {
-      id: '4',
-      title: 'Annual Picnic 2024',
-      date: 'May 25, 2024',
-      time: '11:00 AM - 4:00 PM',
-      location: 'White Rock Lake',
-      description: 'Wonderful family picnic with traditional Odia food, games, and community bonding.',
-      attendees: 120,
-      status: 'past',
-      category: 'Social Events',
-      photos: samplePhotos.filter(p => p.category === 'Social Events')
     }
   ];
 
@@ -253,24 +228,16 @@ const Events = () => {
                     </div> */}
                   </div>
                   <p className="text-muted-foreground">{event.description}</p>
-                  <div className="flex gap-2">
-                    <a
-                      href="https://docs.google.com/forms/d/e/1FAIpQLSf47ibky7itILgmXoLGUZUmxu8-SeFkNc3YlAcOSgehu8PdTg/viewform"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1"
-                    >
-                      <Button variant="hero" className="w-full">
-                        Register
-                      </Button>
-                    </a>
-                    <Button 
-                      variant="outline" 
-                      onClick={() => setSelectedEvent(event)}
-                    >
-                      View Photos
+                  <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSf47ibky7itILgmXoLGUZUmxu8-SeFkNc3YlAcOSgehu8PdTg/viewform"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full"
+                  >
+                    <Button variant="hero" className="w-full">
+                      Register
                     </Button>
-                  </div>
+                  </a>
                 </CardContent>
               </Card>
             ))}
@@ -279,12 +246,33 @@ const Events = () => {
       </section>
 
       {/* Photo Gallery */}
-      <PhotoGalleryGrid
-        photos={samplePhotos}
-        title="Event Gallery"
-        subtitle="Relive the magic of our community events through these beautiful moments captured by our DOS family."
-        showFilters={true}
-      />
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">
+              Event Gallery
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              Relive the magic of our community events through our comprehensive photo gallery. 
+              Each event represents the strength and unity of our DOS family.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/events/gallery">
+                <Button variant="hero" size="lg">
+                  <Image className="mr-2 h-5 w-5" />
+                  Browse Photo Gallery
+                </Button>
+              </a>
+              <a href="/events/gallery?type=videos">
+                <Button variant="outline" size="lg">
+                  <Play className="mr-2 h-5 w-5" />
+                  Watch Videos
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Past Events */}
       <section className="py-16 bg-muted/30">
@@ -325,13 +313,15 @@ const Events = () => {
                     </div>
                   </div>
                   <p className="text-muted-foreground">{event.description}</p>
-                  <Button 
-                    variant="outline" 
-                    onClick={() => setSelectedEvent(event)}
-                    className="w-full"
-                  >
-                    View Photos & Details
-                  </Button>
+                  <a href="/events/gallery" className="w-full">
+                    <Button 
+                      variant="outline" 
+                      className="w-full"
+                    >
+                      <Image className="mr-2 h-4 w-4" />
+                      View Photo Gallery
+                    </Button>
+                  </a>
                 </CardContent>
               </Card>
             ))}
