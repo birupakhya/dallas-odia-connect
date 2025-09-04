@@ -37,7 +37,7 @@ const Navigation = () => {
     },
     { 
       name: 'Events', 
-      href: '/events/upcoming',
+      href: '/events',
       submenu: [
         // { name: 'Current Event', href: '/events/current' }, // Commented out for now
         { name: 'Upcoming Events', href: '/events/upcoming' },
