@@ -3,7 +3,7 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Mail, Phone, MapPin, Clock, MessageSquare, Send } from 'lucide-react';
+import { Mail, MapPin, Send } from 'lucide-react';
 
 const ContactUs = () => {
   // Google Form URL - Contact Us form
@@ -20,22 +20,10 @@ const ContactUs = () => {
       description: "Send us an email for general inquiries"
     },
     {
-      icon: Phone,
-      title: "Phone",
-      content: "(972) 555-0123",
-      description: "Call us during business hours"
-    },
-    {
       icon: MapPin,
       title: "Location",
       content: "Dallas-Fort Worth Metroplex",
       description: "Serving the greater Dallas area"
-    },
-    {
-      icon: Clock,
-      title: "Response Time",
-      content: "24-48 hours",
-      description: "We'll get back to you promptly"
     }
   ];
 
@@ -53,10 +41,6 @@ const ContactUs = () => {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
               Get in touch with the Dallas Odia Society. We'd love to hear from you and answer any questions you may have.
             </p>
-            <Badge className="bg-green-100 text-green-800 border-green-200 text-base px-4 py-2">
-              <MessageSquare className="mr-2 h-4 w-4" />
-              We typically respond within 24-48 hours
-            </Badge>
           </div>
         </div>
       </section>
