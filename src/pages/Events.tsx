@@ -340,14 +340,18 @@ const Events = () => {
             Stay connected with your cultural roots while building new friendships.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="hero" size="lg">
-              <Calendar className="mr-2 h-5 w-5" />
-              View All Events
-            </Button>
-            <Button variant="outline" size="lg">
-              <Users className="mr-2 h-5 w-5" />
-              Become a Member
-            </Button>
+            <a href="/events/upcoming">
+              <Button variant="hero" size="lg">
+                <Calendar className="mr-2 h-5 w-5" />
+                View All Events
+              </Button>
+            </a>
+            <a href="/get-involved/membership">
+              <Button variant="outline" size="lg">
+                <Users className="mr-2 h-5 w-5" />
+                Become a Member
+              </Button>
+            </a>
           </div>
         </div>
       </section>
