@@ -33,8 +33,6 @@ const PastEvents = () => {
       location: 'Shri Ram Mandir, 6521 Chase Oaks Blvd, Plano, TX 75023',
       description: 'A divine celebration of Lord Ganesh featuring traditional rituals, cultural performances, and community festivities. The event included morning puja, community lunch, and concluded with clean-up activities.',
       category: 'Religious Events',
-      photos: 200,
-      videos: 4,
       featured: true
     }
   ];
@@ -191,7 +189,7 @@ const PastEvents = () => {
                       <Link to="/events/gallery" className="flex-1">
                         <Button variant="default" size="sm" className="w-full">
                           <Image className="mr-2 h-4 w-4" />
-                          View Gallery
+                          Photo Gallery
                         </Button>
                       </Link>
                     </div>
