@@ -81,7 +81,7 @@ const HeroSection = () => {
                         <div className="flex items-center justify-center mb-2">
                           <Calendar className="h-8 w-8" />
                         </div>
-                        <div className="text-2xl font-bold">2004</div>
+                        <div className="text-2xl font-bold">1998</div>
                         <div className="text-sm opacity-80">Founded</div>
                       </div>
                       <div className="text-center">
