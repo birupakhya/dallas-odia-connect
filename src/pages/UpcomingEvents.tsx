@@ -157,7 +157,7 @@ const UpcomingEvents = () => {
               Discover exciting DOS events and activities coming up. Register early to secure your spot 
               and be part of our vibrant community celebrations.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="hero" size="lg">
                 <Calendar className="mr-2 h-5 w-5" />
                 View Calendar
@@ -166,7 +166,7 @@ const UpcomingEvents = () => {
                 <ExternalLink className="mr-2 h-5 w-5" />
                 Subscribe to Updates
               </Button>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -312,8 +312,8 @@ const UpcomingEvents = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-r from-primary/10 to-secondary/10">
+      {/* Call to Action - Commented out */}
+      {/* <section className="py-16 bg-gradient-to-r from-primary/10 to-secondary/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6">
             Stay Connected with DOS Events
@@ -335,7 +335,7 @@ const UpcomingEvents = () => {
             We respect your privacy. Unsubscribe at any time.
           </p>
         </div>
-      </section>
+      </section> */}
       <Footer />
     </div>
   );
