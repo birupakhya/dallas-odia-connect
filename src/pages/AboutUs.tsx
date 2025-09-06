@@ -29,7 +29,7 @@ const AboutUs = () => {
       name: "Nilashree Behera"
     },
     {
-      name: "Pushpa Mohapatra"
+      name: "Puspa Mahapatra"
     }
   ];
 
