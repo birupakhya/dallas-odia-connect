@@ -169,7 +169,7 @@ const Footer = () => {
             <p className="text-xs text-muted-foreground">
               This website is made with <Heart className="inline h-3 w-3 text-red-500" /> by DOS volunteers. 
               <a 
-                href="mailto:webteam@dallasodiasociety.org" 
+                href="mailto:bod@dallasodiasociety.org" 
                 className="text-primary hover:text-primary/80 transition-colors ml-1 underline"
               >
                 Get in touch
