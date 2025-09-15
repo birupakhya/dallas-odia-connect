@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 // Google Analytics 4 setup
-const GA_TRACKING_ID = 'G-XXXXXXXXXX'; // Replace with actual tracking ID
+const GA_TRACKING_ID = 'G-EH90Z18K3Z'; // Dallas Odia Society GA4 Property
 
 declare global {
   interface Window {
