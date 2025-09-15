@@ -1,9 +1,6 @@
-import { useEffect } from 'react';
-
 const Sitemap = () => {
-  useEffect(() => {
-    // Generate sitemap XML content
-    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+  // Generate sitemap XML content
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
@@ -91,41 +88,20 @@ const Sitemap = () => {
   
 </urlset>`;
 
-    // Create a response with proper headers
-    const response = new Response(sitemap, {
-      headers: {
-        'Content-Type': 'application/xml',
-        'Cache-Control': 'public, max-age=86400',
-      },
-    });
-
-    // For browsers, we'll display the XML content
-    const blob = new Blob([sitemap], { type: 'application/xml' });
-    const url = URL.createObjectURL(blob);
-    
-    // Open in new tab to show XML content
-    window.open(url, '_blank');
-  }, []);
-
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-primary mb-4">Sitemap XML</h1>
-        <p className="text-muted-foreground mb-4">Your sitemap should open in a new tab.</p>
-        <p className="text-sm text-muted-foreground">
-          If it doesn't open automatically, you can also access the static sitemap at:
-          <br />
-          <a 
-            href="/sitemap.xml" 
-            className="text-primary hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            https://dallasodiasociety.org/sitemap.xml
-          </a>
-        </p>
-      </div>
-    </div>
+    <pre style={{ 
+      whiteSpace: 'pre-wrap', 
+      wordWrap: 'break-word',
+      fontFamily: 'monospace',
+      fontSize: '12px',
+      padding: '20px',
+      backgroundColor: '#f5f5f5',
+      border: '1px solid #ddd',
+      borderRadius: '4px',
+      margin: '20px'
+    }}>
+      {sitemap}
+    </pre>
   );
 };
 
