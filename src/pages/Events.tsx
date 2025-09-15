@@ -6,6 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, MapPin, Users, Clock, ExternalLink, Image, Play } from 'lucide-react';
 import PhotoGalleryGrid from '@/components/PhotoGalleryGrid';
+import SEOHead from '@/components/SEOHead';
+import { eventSchema, breadcrumbSchema } from '@/lib/structured-data';
 
 interface Event {
   id: string;
@@ -161,8 +163,32 @@ const Events = () => {
     }
   };
 
+  const breadcrumbItems = [
+    { name: "Home", url: "/" },
+    { name: "Events", url: "/events" }
+  ];
+
+  // Create structured data for upcoming events
+  const upcomingEventStructuredData = upcomingEvents.map(event => 
+    eventSchema({
+      name: event.title,
+      description: event.description,
+      startDate: event.date,
+      location: event.location,
+      organizer: "Dallas Odia Society",
+      eventStatus: "https://schema.org/EventScheduled"
+    })
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
+      <SEOHead
+        title="DOS Events & Gallery - Cultural Celebrations in Dallas"
+        description="Discover Dallas Odia Society's vibrant community events, cultural celebrations, and memorable moments. Join our upcoming Kumar Purnima 2025 and browse our event gallery."
+        keywords="Dallas Odia Society events, Kumar Purnima 2025, Odia cultural events Dallas, community celebrations DFW, event gallery, cultural festivals Texas"
+        canonicalUrl="/events"
+        structuredData={[breadcrumbSchema(breadcrumbItems), ...upcomingEventStructuredData]}
+      />
       <Navigation />
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-r from-primary/10 to-secondary/10">

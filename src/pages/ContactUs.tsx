@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Mail, MapPin, Send } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
+import { localBusinessSchema, breadcrumbSchema } from '@/lib/structured-data';
 
 const ContactUs = () => {
   // Google Form URL - Contact Us form
@@ -33,8 +35,20 @@ const ContactUs = () => {
     }
   ];
 
+  const breadcrumbItems = [
+    { name: "Home", url: "/" },
+    { name: "Contact Us", url: "/contact" }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
+      <SEOHead
+        title="Contact Dallas Odia Society - Get in Touch"
+        description="Contact Dallas Odia Society for membership, events, or general inquiries. Reach out to our Board of Directors or Treasurer. Located in Dallas-Fort Worth, Texas."
+        keywords="contact Dallas Odia Society, DOS contact, Odia community Dallas, membership inquiry, event information, Dallas Fort Worth Texas"
+        canonicalUrl="/contact"
+        structuredData={[localBusinessSchema, breadcrumbSchema(breadcrumbItems)]}
+      />
       <Navigation />
       
       {/* Hero Section */}

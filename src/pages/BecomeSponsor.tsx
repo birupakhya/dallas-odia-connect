@@ -4,6 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Star, DollarSign, Gift, HelpCircle, CreditCard, Package } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
+import { breadcrumbSchema } from '@/lib/structured-data';
 
 const BecomeSponsor = () => {
   const sponsorshipTopics = [
@@ -39,8 +41,21 @@ const BecomeSponsor = () => {
     }
   ];
 
+  const breadcrumbItems = [
+    { name: "Home", url: "/" },
+    { name: "Get Involved", url: "/get-involved" },
+    { name: "Sponsor", url: "/get-involved/sponsor" }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Become a Sponsor - Dallas Odia Society Sponsorship"
+        description="Support Dallas Odia Society through sponsorship opportunities. Help promote Odia culture in DFW while gaining visibility for your business or organization."
+        keywords="Dallas Odia Society sponsor, DOS sponsorship, Odia community sponsor, DFW business sponsorship, cultural event sponsorship, Texas Indian community"
+        canonicalUrl="/get-involved/sponsor"
+        structuredData={[breadcrumbSchema(breadcrumbItems)]}
+      />
       <Navigation />
       <main className="container mx-auto px-4 py-16">
         {/* Hero Section */}

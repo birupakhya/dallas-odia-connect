@@ -28,8 +28,9 @@ const HeroSection = () => {
               <div className="absolute inset-0">
                 <img
                   src={heroImage}
-                  alt="Traditional Odisha temple with golden sunset"
+                  alt="Traditional Odisha temple architecture with golden sunset - Dallas Odia Society cultural heritage"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/60"></div>
               </div>
@@ -119,8 +120,9 @@ const HeroSection = () => {
               <div className="absolute inset-0">
                 <img
                   src={ganeshPujaBg}
-                  alt="Ganesh Puja celebration background"
+                  alt="Ganesh Puja celebration 2025 - Dallas Odia Society religious festival with traditional decorations"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/60"></div>
               </div>
@@ -206,8 +208,9 @@ const HeroSection = () => {
               <div className="absolute inset-0">
                 <img
                   src={culturalDanceImage}
-                  alt="Cultural dance performance during Kumar Purnima celebration"
+                  alt="Kumar Purnima 2025 cultural dance performance - Dallas Odia Society traditional Odia celebration"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/90 to-primary/70"></div>
               </div>

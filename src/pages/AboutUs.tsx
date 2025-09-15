@@ -4,6 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import amitabhHeadshot from '@/assets/amitabh-headshot.png';
 import boardMember2 from '@/assets/board-member-2.jpg';
 import boardMember3 from '@/assets/board-member-3.jpg';
+import SEOHead from '@/components/SEOHead';
+import { organizationSchema, breadcrumbSchema } from '@/lib/structured-data';
 
 const AboutUs = () => {
   const boardMembers = [
@@ -43,8 +45,20 @@ const AboutUs = () => {
     }
   ];
 
+  const breadcrumbItems = [
+    { name: "Home", url: "/" },
+    { name: "About Us", url: "/about" }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="About Dallas Odia Society - Our Mission & Leadership"
+        description="Learn about Dallas Odia Society's mission to preserve Odia culture in DFW. Meet our board members, event committee, and discover our community values and bylaws."
+        keywords="Dallas Odia Society about, board members, mission statement, Odia culture DFW, community leadership, Amitabh Mishra, non-profit organization Texas"
+        canonicalUrl="/about"
+        structuredData={[organizationSchema, breadcrumbSchema(breadcrumbItems)]}
+      />
       <Navigation />
       <main className="container mx-auto px-4 py-16">
         {/* Hero Section */}

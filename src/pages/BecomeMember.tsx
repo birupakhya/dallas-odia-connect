@@ -4,6 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle, Users, Star, Facebook, Mail, Phone } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
+import { breadcrumbSchema } from '@/lib/structured-data';
 
 const BecomeMember = () => {
   const benefits = [
@@ -35,8 +37,21 @@ const BecomeMember = () => {
     }
   ];
 
+  const breadcrumbItems = [
+    { name: "Home", url: "/" },
+    { name: "Get Involved", url: "/get-involved" },
+    { name: "Membership", url: "/get-involved/membership" }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Become a Member - Dallas Odia Society Membership"
+        description="Join Dallas Odia Society as a member and be part of our vibrant Odia community in DFW. Annual membership $11, 5-year membership $49. Experience 'Home away from Home'."
+        keywords="Dallas Odia Society membership, join DOS, Odia community membership, DFW Indian community, annual membership, cultural organization Texas"
+        canonicalUrl="/get-involved/membership"
+        structuredData={[breadcrumbSchema(breadcrumbItems)]}
+      />
       <Navigation />
       <main className="container mx-auto px-4 py-16">
         {/* Hero Section */}
