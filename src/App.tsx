@@ -20,6 +20,7 @@ const GoogleDriveTest = lazy(() => import("./pages/GoogleDriveTest"));
 const GoogleDriveGallery = lazy(() => import("./components/GoogleDriveGallery"));
 const OAuthCallback = lazy(() => import("./pages/OAuthCallback"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
+const Sitemap = lazy(() => import("./pages/Sitemap"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 import FeedbackButton from "./components/FeedbackButton";
 import FaviconUpdater from "./components/FaviconUpdater";
@@ -94,6 +95,11 @@ const App = () => (
           <Route path="/auth/callback" element={
             <Suspense fallback={<LoadingSpinner />}>
               <OAuthCallback />
+            </Suspense>
+          } />
+          <Route path="/sitemap.xml" element={
+            <Suspense fallback={<LoadingSpinner />}>
+              <Sitemap />
             </Suspense>
           } />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

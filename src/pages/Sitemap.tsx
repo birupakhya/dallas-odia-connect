@@ -91,25 +91,39 @@ const Sitemap = () => {
   
 </urlset>`;
 
-    // Set the content type and return the XML
+    // Create a response with proper headers
+    const response = new Response(sitemap, {
+      headers: {
+        'Content-Type': 'application/xml',
+        'Cache-Control': 'public, max-age=86400',
+      },
+    });
+
+    // For browsers, we'll display the XML content
     const blob = new Blob([sitemap], { type: 'application/xml' });
     const url = URL.createObjectURL(blob);
     
-    // Create a download link
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'sitemap.xml';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    // Open in new tab to show XML content
+    window.open(url, '_blank');
   }, []);
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center">
       <div className="text-center">
-        <h1 className="text-2xl font-bold text-primary mb-4">Sitemap Generated</h1>
-        <p className="text-muted-foreground">Your sitemap.xml file should download automatically.</p>
+        <h1 className="text-2xl font-bold text-primary mb-4">Sitemap XML</h1>
+        <p className="text-muted-foreground mb-4">Your sitemap should open in a new tab.</p>
+        <p className="text-sm text-muted-foreground">
+          If it doesn't open automatically, you can also access the static sitemap at:
+          <br />
+          <a 
+            href="/sitemap.xml" 
+            className="text-primary hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            https://dallasodiasociety.org/sitemap.xml
+          </a>
+        </p>
       </div>
     </div>
   );
