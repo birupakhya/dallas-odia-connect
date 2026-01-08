@@ -55,7 +55,7 @@ const BecomeMember = () => {
       <Navigation />
       <main className="container mx-auto px-4 py-16">
         {/* Hero Section */}
-        <section className="text-center mb-16">
+        {/* <section className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-serif font-bold gradient-text mb-6">
             Become A Member
           </h1>
@@ -66,7 +66,7 @@ const BecomeMember = () => {
         </section>
 
         {/* Universal Benefits */}
-        <section className="mb-20">
+        {/* <section className="mb-20">
           <div className="bg-gradient-warm rounded-2xl p-8 md:p-12 text-center">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6">
               Benefits for All Members
@@ -86,7 +86,7 @@ const BecomeMember = () => {
         </section>
 
         {/* Membership Categories */}
-        <section className="mb-20">
+        {/* <section className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-serif font-bold gradient-text mb-4">
               Membership Categories
@@ -98,7 +98,7 @@ const BecomeMember = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Subscribed Membership */}
-            <Card className="group hover:shadow-warm transition-all duration-300 border-0 bg-card/50 backdrop-blur-sm">
+            {/* <Card className="group hover:shadow-warm transition-all duration-300 border-0 bg-card/50 backdrop-blur-sm">
               <CardHeader className="text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="h-8 w-8 text-primary" />
@@ -129,7 +129,7 @@ const BecomeMember = () => {
             </Card>
 
             {/* Paid Membership */}
-            <Card className="group hover:shadow-warm transition-all duration-300 border-0 bg-card/50 backdrop-blur-sm">
+            {/* <Card className="group hover:shadow-warm transition-all duration-300 border-0 bg-card/50 backdrop-blur-sm">
               <CardHeader className="text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Star className="h-8 w-8 text-primary" />
@@ -160,7 +160,7 @@ const BecomeMember = () => {
         </section>
 
         {/* Membership Plans */}
-        <section className="mb-20">
+        {/* <section className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-serif font-bold gradient-text mb-4">
               Paid Membership Plans
@@ -192,7 +192,7 @@ const BecomeMember = () => {
         </section>
 
         {/* How to Join */}
-        <section className="mb-20">
+        {/* <section className="mb-20">
           <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 md:p-12 text-center border border-primary/20">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6">
               How to Join
@@ -230,7 +230,7 @@ const BecomeMember = () => {
         </section>
 
         {/* Important Notes */}
-        <section className="mb-20">
+        {/* <section className="mb-20">
           <div className="bg-muted/50 rounded-2xl p-8 md:p-12">
             <h2 className="text-2xl font-serif font-bold text-primary mb-6 text-center">
               Important Information
@@ -261,7 +261,7 @@ const BecomeMember = () => {
         </section>
 
         {/* Coming Soon */}
-        <section className="text-center">
+        {/* <section className="text-center">
           <div className="bg-gradient-warm rounded-2xl p-8 md:p-12">
             <h2 className="text-2xl font-serif font-bold text-primary mb-6">
               Coming Soon
@@ -280,6 +280,21 @@ const BecomeMember = () => {
                 <p className="text-sm text-muted-foreground">Standard FAQs about membership</p>
               </div>
             </div>
+          </div>
+        </section> */}
+
+        {/* Coming Soon */}
+        <section className="text-center">
+          <div className="bg-gradient-warm rounded-2xl p-8 md:p-12">
+            <h1 className="text-4xl md:text-6xl font-serif font-bold gradient-text mb-6">
+              Become A Member
+            </h1>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6">
+              Coming Soon
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Membership information will be available soon. Please check back later.
+            </p>
           </div>
         </section>
       </main>

@@ -189,7 +189,7 @@ const AboutUs = () => {
         </section>
 
         {/* ByLaw Section */}
-        <section className="mt-20">
+        {/* <section className="mt-20">
           <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 md:p-12 text-center border border-primary/20">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6">DOS ByLaw</h2>
             <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8">
@@ -221,7 +221,7 @@ const AboutUs = () => {
               </a>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
       <Footer />
     </div>
